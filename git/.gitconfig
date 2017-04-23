@@ -1,6 +1,6 @@
 [core]
   editor = vim
-  excludesfile = "$HOME/.gitignore"
+	excludesfile = /Users/ajesler/.gitignore_global
 
 [color]
   branch = auto

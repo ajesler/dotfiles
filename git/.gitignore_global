@@ -1,0 +1,10 @@
+.tmuxp.yaml  
+
+.rbenv-gemsets
+vendor/cache
+
+*.un~ # vim undo files
+\#*\#
+
+*~
+.DS_Store
