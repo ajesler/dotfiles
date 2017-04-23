@@ -1,5 +1,6 @@
 [core]
   editor = vim
+  excludesfile = "$HOME/.gitignore"
 
 [color]
   branch = auto
@@ -7,17 +8,53 @@
   status = auto
 
 [pretty]
-    olpc = "%C(green)%h %C(yellow)[%ad]%Cred%d %Creset%s%C(cyan) [%cn]%Creset"
-    olpcnc = "%h [%ad]%d %s [%cn]"
+  olpc = "%C(green)%h %C(yellow)[%ad]%Cred%d %Creset%s%C(cyan) [%aN]%Creset"
+  olpcnc = "%h [%ad]%d %s [%aN]"
 
 [alias]
   la = "!git config -l | grep alias | cut -c 7-" # list aliases
 
   # log
   ls = log --format=olpc --decorate --date=relative
+  ld = log --format=olpc --decorate --date=relative --stat -p
+  lf = log --format=olpc --decorate --date=relative --stat
+  lfn = log --format=olpc --decorate --date=relative --name-only
   
   # diff
   ds = diff --staged
+
+  # commit
+  cv = commit -v
+
+  # branch
+  branchname = rev-parse --abbrev-ref HEAD
+  track = "!f() { BRANCH=$(git branchname); git branch --set-upstream-to=origin/${BRANCH}; }; f"
+  cpbn = "!f() { git branchname | pbcopy; }; f"
+
+[push]
+  default = simple
+
+[pull]
+  ff = only
+
+[merge]
+  stat = true
+  ff = false
+  log = true
+
+[diff]
+  mnemonicprefix = true
+  renames = copies
+  renameslimit = 0
+
+[branch]
+  autosetupmerge = true
+
+[advice]
+  pushNonFastForward = false
+
 [user]
-	email = aj@esler.co.nz
 	name = ajesler
+
+[github]
+  user = ajesler
