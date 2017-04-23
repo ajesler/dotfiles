@@ -1,0 +1,23 @@
+[core]
+  editor = vim
+
+[color]
+  branch = auto
+  diff = auto
+  status = auto
+
+[pretty]
+    olpc = "%C(green)%h %C(yellow)[%ad]%Cred%d %Creset%s%C(cyan) [%cn]%Creset"
+    olpcnc = "%h [%ad]%d %s [%cn]"
+
+[alias]
+  la = "!git config -l | grep alias | cut -c 7-" # list aliases
+
+  # log
+  ls = log --format=olpc --decorate --date=relative
+  
+  # diff
+  ds = diff --staged
+[user]
+	email = aj@esler.co.nz
+	name = ajesler
