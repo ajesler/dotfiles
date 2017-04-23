@@ -15,6 +15,10 @@ set autoread " Auto-reload buffers when file changed on disk
 set updatecount=0
 " set list " show invisible characters
 
+set backup
+set backupdir=/private/tmp
+set dir=/private/tmp
+
 
 "" Whitespace
 set nowrap
