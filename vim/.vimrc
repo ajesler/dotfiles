@@ -72,3 +72,9 @@ nnoremap <leader>vv <C-w>v<C-w>l
 " Ruby
 " ignore Bundler standalone/vendor installs & gems
 set wildignore+=bundle/**,vendor/bundle/**,vendor/cache/**,vendor/gems/**
+
+set pastetoggle=<F2>
+
+" Quickly edit/reload the vimrc file
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
