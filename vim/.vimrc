@@ -7,6 +7,13 @@ set modelines=0
 set backspace=indent,eol,start
 set cursorline
 
+colorscheme mustang
+set bg=dark
+
+filetype plugin indent on             " Indent using filetype files if they
+set autoindent                        " Copy the indentation from the previous
+set smartindent                       " Insert an extra indent level in some
+
 set relativenumber
 set ruler
 set scrolloff=3 " have some context around the current line always on screen
@@ -32,8 +39,9 @@ set colorcolumn=130
 "" Leader
 let mapleader = ","
 
-nnoremap / /\v  " fix regex handling
-vnoremap / /\v	" fix regex handling
+" fix regex handling
+nnoremap / /\v
+vnoremap / /\v
 
 set gdefault    " substitutions apply globally, rather than current line
 
@@ -81,3 +89,15 @@ set pastetoggle=<F2>
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
+
+" --- Plugins --- "
+call plug#begin('~/.vim/plugged')
+
+Plug 'tpope/vim-surround' " change surroundings
+Plug 'bronson/vim-trailing-whitespace' " Marks all trailing whitespace in red
+Plug 'scrooloose/nerdtree' " File browser
+Plug 'scrooloose/nerdcommenter' " Comment toggling
+Plug 'ctrlpvim/ctrlp.vim' " Fuzzy file finding
+Plug 'vim-airline/vim-airline' " Status bar
+
+call plug#end()
