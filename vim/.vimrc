@@ -5,7 +5,6 @@ set showcmd
 set showmode
 set modelines=0
 set backspace=indent,eol,start
-set undofile
 set cursorline
 
 set relativenumber
@@ -16,8 +15,12 @@ set updatecount=0
 " set list " show invisible characters
 
 set backup
-set backupdir=/private/tmp
-set dir=/private/tmp
+set undofile
+set undolevels=1000
+set undoreload=1
+set backupdir=~/.vim/.backup//
+set directory=~/.vim/,swap//
+set undodir=~/.vim/.undo//
 
 
 "" Whitespace
