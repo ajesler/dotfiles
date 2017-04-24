@@ -58,3 +58,6 @@
 
 [github]
   user = ajesler
+
+[include]
+  path = ~/.gitconfig_local
