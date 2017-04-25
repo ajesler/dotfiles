@@ -95,11 +95,11 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
-" WIndow navigation
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
+" Window navigation
+"nnoremap <C-j> <C-w>j
+"nnoremap <C-k> <C-w>k
+"nnoremap <C-h> <C-w>h
+"nnoremap <C-l> <C-w>l
 
 inoremap jj <ESC> " Press jj twice to Escape
 nnoremap <Space> za " toggle the current fold
@@ -111,6 +111,7 @@ set wildignore+=bundle/**,vendor/bundle/**,vendor/cache/**,vendor/gems/**
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ev :vsp $MYVIMRC<CR>
 nmap <silent> <leader>ez :vsp ~/.zshrc<CR>
+nmap <silent> <leader>et :vsp ~/.tmux.conf<CR>
 nmap <silent> <leader>sv :source $MYVIMRC<CR>
 
 " --- Plugin --- "
@@ -122,6 +123,7 @@ Plug 'scrooloose/nerdtree' " File browser
 Plug 'scrooloose/nerdcommenter' " Comment toggling
 Plug 'ctrlpvim/ctrlp.vim' " Fuzzy file finding
 Plug 'vim-airline/vim-airline' " Status bar
+Plug 'christoomey/vim-tmux-navigator' " tmux integration
 
 " Look at in the future
 " sjl/gundo.vim
