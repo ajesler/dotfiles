@@ -36,6 +36,7 @@ set backupdir=~/.vim/.backup//
 set directory=~/.vim/,swap//
 set undodir=~/.vim/.undo//
 
+set mouse=a " Use mouse to scroll
 
 "" Whitespace
 set nowrap
