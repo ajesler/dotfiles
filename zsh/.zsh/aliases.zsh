@@ -14,6 +14,7 @@ alias zshr="source ~/.zshrc"
 alias g=git
 alias gap="git add -p"
 alias gcv="git commit -v"
+alias gco="git checkout"
 alias gs="git status"
 alias gd="git diff"
 alias gds="git diff --cached"
