@@ -33,7 +33,7 @@ set undofile
 set undolevels=1000
 set undoreload=1
 set backupdir=~/.vim/.backup//
-set directory=~/.vim/,swap//
+set directory=~/.vim/.swap//
 set undodir=~/.vim/.undo//
 
 set mouse=a " Use mouse to scroll
