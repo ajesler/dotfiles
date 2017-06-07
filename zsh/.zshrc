@@ -10,7 +10,7 @@ setopt multios # perform implicit tees or cats when multiple redirections are at
 
 set editing-mode vi
 set keymap vi-command
-
+stty sane # Fix the thing where enter is sometimes ^M
 
 # Autoloads
 autoload -U colors && colors
