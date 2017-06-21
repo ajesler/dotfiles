@@ -30,6 +30,7 @@
   branchname = rev-parse --abbrev-ref HEAD
   track = "!f() { BRANCH=$(git branchname); git branch --set-upstream-to=origin/${BRANCH}; }; f"
   cpbn = "!f() { git branchname | pbcopy; }; f"
+  commitlog = "!f() { BRANCH=$(git rev-parse --abbrev-ref HEAD); git log --format=\"[${BRANCH} %h] %s\" --date=short --reverse $1; }; f"
 
 [push]
   default = simple
