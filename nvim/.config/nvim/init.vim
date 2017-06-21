@@ -15,7 +15,7 @@ set modelines=0
 set backspace=indent,eol,start
 set cursorline
 
-colorscheme mustang
+" colorscheme mustang
 set background=dark
 
 filetype plugin indent on             " Indent using filetype files if they
@@ -116,13 +116,14 @@ nmap <silent> <leader>et :vsp ~/.tmux.conf<CR>
 nmap <silent> <leader>sv :source $MYVIMRC<CR>
 
 " --- Plugin --- "
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
+Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-surround' " change surroundings
 Plug 'bronson/vim-trailing-whitespace' " Marks all trailing whitespace in red
 Plug 'scrooloose/nerdtree' " File browser
 Plug 'scrooloose/nerdcommenter' " Comment toggling
-Plug 'ctrlpvim/ctrlp.vim' " Fuzzy file finding
+" Plug 'ctrlpvim/ctrlp.vim' " Fuzzy file finding
 Plug 'vim-airline/vim-airline' " Status bar
 Plug 'christoomey/vim-tmux-navigator' " tmux integration
 
