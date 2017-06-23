@@ -32,9 +32,9 @@ set backup
 set undofile
 set undolevels=1000
 set undoreload=1
-set backupdir=~/.vim/.backup//
-set directory=~/.vim/.swap//
-set undodir=~/.vim/.undo//
+set backupdir=~/.config/nvim/.backup//
+set directory=~/.config/nvim/.swap//
+set undodir=~/.config/nvim/.undo//
 
 set mouse=a " Use mouse to scroll
 
