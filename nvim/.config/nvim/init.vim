@@ -15,6 +15,9 @@ set modelines=0
 set backspace=indent,eol,start
 set cursorline
 
+" Set the tags source
+set tags=./tags
+
 " colorscheme mustang
 set background=dark
 
@@ -46,7 +49,6 @@ set expandtab
 set gdefault    " substitutions apply globally, rather than current line
 set pastetoggle=<F2> " Toggle paste mode so autoindents are not applied
 
-
 "" Make searching a bit nicer
 set hlsearch    " highlight search matches
 set incsearch   " incremental search
@@ -54,23 +56,36 @@ set ignorecase  " searches are case insensitive
 set smartcase   " unless they contain at least one capital letter
 set showmatch
 
-au FocusLost * :wa " Save file on lose focus
-
 " --- Key mappings --- "
 let mapleader = " " " Leader
 
-nnoremap ; : " use ; for commands
+"" Make copy as expected (ish)
+vnoremap <C-c> "*y
+
+" copy current file name (relative/absolute) to system clipboard
+if has("mac") || has("gui_macvim") || has("gui_mac")
+  " relative path  (src/foo.txt)
+  nnoremap <leader>cf :let @*=expand("%")<CR>
+
+  " absolute path  (/something/src/foo.txt)
+  nnoremap <leader>cF :let @*=expand("%:p")<CR>
+
+  " filename       (foo.txt)
+  nnoremap <leader>ct :let @*=expand("%:t")<CR>
+
+  " directory name (/something/src)
+  nnoremap <leader>ch :let @*=expand("%:p:h")<CR>
+endif
 
 " fix regex handling
 nnoremap / /\v
 vnoremap / /\v
 
 " Leader mappings
-nnoremap <leader><space> :noh<cr> " can use ,<space> to clear a the search
-nnoremap <Leader>a :Ack!<Space>
-nnoremap <Leader>o :CtrlP<CR> " open a file
+nnoremap <leader><space> :noh<cr> " can use <leader><space> to clear a the search
+nnoremap <leader>f :Files<CR>
 nnoremap <leader>s :mksession<CR> " Save vim open file layout
-nnoremap <Leader>t :NERDTree<CR>
+nnoremap <leader>t :NERDTree<CR>
 nnoremap <leader>vv <C-w>v<C-w>l " Open a new vertical split and switch to it
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR> " strip trailing whitespace
 
@@ -103,7 +118,7 @@ inoremap <right> <nop>
 "nnoremap <C-l> <C-w>l
 
 inoremap jj <ESC> " Press jj twice to Escape
-nnoremap <Space> za " toggle the current fold
+" nnoremap <Space> za " toggle the current fold
 
 " Ruby
 " ignore Bundler standalone/vendor installs & gems
@@ -119,11 +134,13 @@ nmap <silent> <leader>sv :source $MYVIMRC<CR>
 call plug#begin('~/.config/nvim/plugged')
 
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround' " change surroundings
+Plug 'tpope/vim-commentary' " toggle comments
+" Plug 'nelstrom/vim-textobj-rubyblock'
+Plug 'tpope/vim-rails'
 Plug 'bronson/vim-trailing-whitespace' " Marks all trailing whitespace in red
 Plug 'scrooloose/nerdtree' " File browser
-Plug 'scrooloose/nerdcommenter' " Comment toggling
-" Plug 'ctrlpvim/ctrlp.vim' " Fuzzy file finding
 Plug 'vim-airline/vim-airline' " Status bar
 Plug 'christoomey/vim-tmux-navigator' " tmux integration
 
