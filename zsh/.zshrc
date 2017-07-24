@@ -10,7 +10,8 @@ setopt multios # perform implicit tees or cats when multiple redirections are at
 
 set editing-mode vi
 set keymap vi-command
-stty sane # Fix the thing where enter is sometimes ^M
+# stty sane # Fix the thing where enter is sometimes ^M
+stty icrnl # Fix the thing where enter is sometimes ^M
 
 # Autoloads
 autoload -U colors && colors
@@ -26,12 +27,7 @@ export HISTSIZE=1000
 export HISTFILE=~/.zsh_history
 export SAVEHIST=$HISTSIZE
 
-# export PATH="/usr/local/bin:/usr/local/sbin:$PATH" # is this required for homebrew?
-
-if [[ -d $HOME/bin ]]; then
-  export PATH="$HOME/bin:$PATH"
-fi
-
+export FZF_DEFAULT_COMMAND='ag -g ""'
 
 # Bindings
 bindkey -v
@@ -40,7 +36,6 @@ bindkey '^P' up-history
 bindkey '^N' down-history
 bindkey '^w' backward-kill-word
 bindkey '^r' history-incremental-search-backward
-
 
 source $HOME/.zsh/prompt.zsh
 source $HOME/.zsh/aliases.zsh
@@ -54,3 +49,7 @@ source $HOME/.zsh/go.zsh
 
 # Load local config if it exists
 [ -e $HOME/.zshrc_local ] && source $HOME/.zshrc_local
+
+if [[ -d $HOME/bin ]]; then
+  export PATH="$HOME/bin:$PATH"
+fi

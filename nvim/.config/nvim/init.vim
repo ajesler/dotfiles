@@ -42,7 +42,7 @@ set undodir=~/.config/nvim/.undo//
 set mouse=a " Use mouse to scroll
 
 "" Whitespace
-set nowrap
+set wrap
 set tabstop=2 shiftwidth=2 softtabstop=2
 set expandtab
 
@@ -84,6 +84,7 @@ vnoremap / /\v
 " Leader mappings
 nnoremap <leader><space> :noh<cr> " can use <leader><space> to clear a the search
 nnoremap <leader>f :Files<CR>
+nnoremap <leader>g :Buffers<CR>
 nnoremap <leader>s :mksession<CR> " Save vim open file layout
 nnoremap <leader>t :NERDTree<CR>
 nnoremap <leader>vv <C-w>v<C-w>l " Open a new vertical split and switch to it
@@ -151,28 +152,10 @@ Plug 'christoomey/vim-tmux-navigator' " tmux integration
 call plug#end()
 
 " --- Plugin Settings --- "
-" CtrlP
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
+" vim-rails
+let g:Tlist_Ctags_Cmd = 'ripper-tags -R --exclude=vendor'
+let g:rails_ctags_arguments = ''
 
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_match_window = 'bottom,order:ttb'
-let g:ctrlp_switch_buffer = 0
-
-let g:ctrlp_use_caching = 0
-let ctrlp_search_command = {
-  \ 'types': {
-    \ 1: ['.git', 'git --git-dir=%s/.git ls-files -co --exclude-standard'],
-    \ },
-  \ 'fallback': 'find %s -type f'
-  \ }
-
-if executable('ag')
-	set grepprg=ag\ --nogroup\ --nocolor
-	let ctrlp_search_command.fallback = 'ag %s -l --hidden --nocolor -g ""'
-endif
-
-let g:ctrlp_user_command = ctrlp_search_command
 
 " airline
 set laststatus=2 " Show all the time
