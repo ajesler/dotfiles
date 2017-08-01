@@ -15,3 +15,10 @@ stow --target=$HOME zsh nvim git tmux || failure
 
 # This is a bit special as we might have machine specific files here already
 stow --target=$HOME/bin -R bin || failure
+
+if ! type brew &> /dev/null; then
+  echo "Please install homebrew (https://brew.sh/) and run this again"
+  exit 1
+fi
+
+brew bundle
