@@ -86,14 +86,28 @@ endif
 nnoremap / /\v
 vnoremap / /\v
 
+" Use tab to jump between brackets
+nnoremap <tab> %
+vnoremap <tab> %
+
 " Leader mappings
-nnoremap <leader><space> :noh<cr> " can use <leader><space> to clear a the search
+nnoremap <leader><space> :noh<cr> " can use <leader><space> to clear the search
 nnoremap <leader>f :Files<CR>
-nnoremap <leader>g :Buffers<CR>
-nnoremap <leader>s :mksession<CR> " Save vim open file layout
+nnoremap <leader>a :Ag<CR>
+nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>t :NERDTree<CR>
-nnoremap <leader>vv <C-w>v<C-w>l " Open a new vertical split and switch to it
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR> " strip trailing whitespace
+nnoremap <leader>l :mksession<CR> " Save vim open file layout
+
+" Close a window panel
+nmap <leader>c <C-w>c
+" Use <leader>v to open a new vertical split and switch to it
+nnoremap <leader>v <C-w>v<C-w>l
+" Use <leader>s to open a new horizontal split and switch to it
+nnoremap <leader>s <C-w>s<C-w>j
+
+nnoremap <leader>g :Ggrep
+autocmd QuickFixCmdPost *grep* cwindow
 
 " Copy and paste to system clipboard
 vmap <Leader>y "+y
@@ -118,10 +132,10 @@ inoremap <left> <nop>
 inoremap <right> <nop>
 
 " Window navigation
-"nnoremap <C-j> <C-w>j
-"nnoremap <C-k> <C-w>k
-"nnoremap <C-h> <C-w>h
-"nnoremap <C-l> <C-w>l
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
 
 inoremap jj <ESC> " Press jj twice to Escape
 " nnoremap <Space> za " toggle the current fold
@@ -142,13 +156,16 @@ call plug#begin('~/.config/nvim/plugged')
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround' " change surroundings
+Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-commentary' " toggle comments
-" Plug 'nelstrom/vim-textobj-rubyblock'
-Plug 'tpope/vim-rails'
 Plug 'bronson/vim-trailing-whitespace' " Marks all trailing whitespace in red
 Plug 'scrooloose/nerdtree' " File browser
 Plug 'vim-airline/vim-airline' " Status bar
 Plug 'christoomey/vim-tmux-navigator' " tmux integration
+Plug 'kana/vim-textobj-user'
+Plug 'nelstrom/vim-textobj-rubyblock'
+
+Plug 'tpope/vim-rails'
 
 " Look at in the future
 " sjl/gundo.vim
