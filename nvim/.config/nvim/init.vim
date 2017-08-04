@@ -49,6 +49,11 @@ set expandtab
 set gdefault    " substitutions apply globally, rather than current line
 set pastetoggle=<F2> " Toggle paste mode so autoindents are not applied
 
+"" Copy and paste
+set clipboard=unnamedplus
+" yy => copies to clipboard
+" p  => pastes from clipboard
+
 "" Make searching a bit nicer
 set hlsearch    " highlight search matches
 set incsearch   " incremental search
