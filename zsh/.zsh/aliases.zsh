@@ -1,4 +1,4 @@
-alias v=vim
+alias v=nvim
 
 # Navigation
 alias dev="cd ~/dev"

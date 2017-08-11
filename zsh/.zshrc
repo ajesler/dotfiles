@@ -21,7 +21,7 @@ export LANG="en_US"
 export LC_CTYPE=$LANG.UTF-8
 export LC_COLLATE=C
 export TERM='xterm-256color'
-export EDITOR=vim
+export EDITOR=nvim
 
 export HISTSIZE=1000
 export HISTFILE=~/.zsh_history

@@ -95,9 +95,12 @@ nnoremap <leader><space> :noh<cr> " can use <leader><space> to clear the search
 nnoremap <leader>f :Files<CR>
 nnoremap <leader>a :Ag<CR>
 nnoremap <leader>b :Buffers<CR>
-nnoremap <leader>t :NERDTree<CR>
+nnoremap <leader>t :NERDTreeToggle<CR>
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR> " strip trailing whitespace
 nnoremap <leader>l :mksession<CR> " Save vim open file layout
+
+vmap <C-F> :cclose<CR>y:silent Ag "<C-R>""<CR>
+nmap <C-F> :cclose<CR>yiw:silent Ag "<C-R>""<CR>
 
 " Close a window panel
 nmap <leader>c <C-w>c
@@ -106,7 +109,7 @@ nnoremap <leader>v <C-w>v<C-w>l
 " Use <leader>s to open a new horizontal split and switch to it
 nnoremap <leader>s <C-w>s<C-w>j
 
-nnoremap <leader>g :Ggrep
+" nnoremap <leader>g :Ggrep
 autocmd QuickFixCmdPost *grep* cwindow
 
 " Copy and paste to system clipboard
@@ -126,6 +129,10 @@ nnoremap <up> <nop>
 nnoremap <down> <nop>
 nnoremap <left> <nop>
 nnoremap <right> <nop>
+vnoremap <up> <nop>
+vnoremap <down> <nop>
+vnoremap <left> <nop>
+vnoremap <right> <nop>
 inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
@@ -145,9 +152,9 @@ inoremap jj <ESC> " Press jj twice to Escape
 set wildignore+=bundle/**,vendor/bundle/**,vendor/cache/**,vendor/gems/**
 
 " Quickly edit/reload the vimrc file
-nmap <silent> <leader>ev :vsp $MYVIMRC<CR>
-nmap <silent> <leader>ez :vsp ~/.zshrc<CR>
-nmap <silent> <leader>et :vsp ~/.tmux.conf<CR>
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>ez :e ~/.zshrc<CR>
+nmap <silent> <leader>et :e ~/.tmux.conf<CR>
 nmap <silent> <leader>sv :source $MYVIMRC<CR>
 
 " --- Plugin --- "
@@ -166,6 +173,9 @@ Plug 'kana/vim-textobj-user'
 Plug 'nelstrom/vim-textobj-rubyblock'
 
 Plug 'tpope/vim-rails'
+
+" Plug 'neomake/neomake'
+" Plug 'tpope/vim-bundler'
 
 " Look at in the future
 " sjl/gundo.vim
