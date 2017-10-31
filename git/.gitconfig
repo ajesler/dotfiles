@@ -1,11 +1,19 @@
 [core]
   editor = nvim
 	excludesfile = /Users/ajesler/.gitignore_global
+  # pager = diff-so-fancy | less --tabs=4 -RFX
+
+# [pager]
+#   diff = diff-so-fancy | less
+#   log = diff-highlight | less
+#   show = diff-highlight | less
+
 
 [color]
   branch = auto
   diff = auto
   status = auto
+	ui = true
 
 [pretty]
   olpc = "%C(green)%h %C(yellow)[%ad]%Cred%d %Creset%s%C(cyan) [%aN]%Creset"
@@ -64,3 +72,15 @@
   path = ~/.gitconfig_local
 [commit]
 	verbose = true
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = 34 bold
+	newHighlight = 34 bold 22
+[color "diff"]
+	meta = 227
+	frag = magenta bold
+	commit = 227 bold
+	old = red bold
+	new = 34 bold
+	whitespace = red reverse
