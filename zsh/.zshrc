@@ -21,9 +21,8 @@ export LANG="en_US"
 export LC_CTYPE=$LANG.UTF-8
 export LC_COLLATE=C
 export TERM='xterm-256color'
-export EDITOR=nvim
 
-export HISTSIZE=1000
+export HISTSIZE=10000
 export HISTFILE=~/.zsh_history
 export SAVEHIST=$HISTSIZE
 
@@ -38,18 +37,7 @@ bindkey '^w' backward-kill-word
 bindkey '^r' history-incremental-search-backward
 
 source $HOME/.zsh/prompt.zsh
-source $HOME/.zsh/aliases.zsh
-source $HOME/.zsh/functions.zsh
-
 source $HOME/.zsh/fzf.zsh
-
-# Language specific config files
-source $HOME/.zsh/ruby.zsh
-source $HOME/.zsh/go.zsh
 
 # Load local config if it exists
 [ -e $HOME/.zshrc_local ] && source $HOME/.zshrc_local
-
-if [[ -d $HOME/bin ]]; then
-  export PATH="$HOME/bin:$PATH"
-fi
