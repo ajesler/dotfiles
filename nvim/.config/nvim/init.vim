@@ -26,6 +26,7 @@ set autoindent                        " Copy the indentation from the previous
 set smartindent                       " Insert an extra indent level in some
 
 set relativenumber
+set number
 set ruler
 set scrolloff=3 " have some context around the current line always on screen
 set autoread " Auto-reload buffers when file changed on disk
@@ -63,9 +64,17 @@ set showmatch
 
 " --- Key mappings --- "
 let mapleader = " " " Leader
+let maplocalleader = ","
 
 "" Make copy as expected (ish)
 vnoremap <C-c> "*y
+
+nnoremap <tab><tab> :tab split<cr>
+nnoremap <backspace><backspace> :tabclose<cr>
+
+" Maximise and minimise buffer
+nnoremap <C-W>M <C-W>\| <C-W>_
+nnoremap <C-W>m <C-W>=
 
 " copy current file name (relative/absolute) to system clipboard
 if has("mac") || has("gui_macvim") || has("gui_mac")
@@ -97,13 +106,11 @@ nnoremap <leader>a :Ag<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>t :NERDTreeToggle<CR>
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR> " strip trailing whitespace
-nnoremap <leader>l :mksession<CR> " Save vim open file layout
 
-vmap <C-F> :cclose<CR>y:silent Ag "<C-R>""<CR>
-nmap <C-F> :cclose<CR>yiw:silent Ag "<C-R>""<CR>
+vmap <C-F> :cclose<CR>y:silent Ag <C-R>"<CR>
+nmap <C-F> :cclose<CR>yiw:silent Ag <C-R>"<CR>
 
 " Close a window panel
-nmap <leader>c <C-w>c
 " Use <leader>v to open a new vertical split and switch to it
 nnoremap <leader>v <C-w>v<C-w>l
 " Use <leader>s to open a new horizontal split and switch to it
@@ -111,6 +118,9 @@ nnoremap <leader>s <C-w>s<C-w>j
 
 " nnoremap <leader>g :Ggrep
 autocmd QuickFixCmdPost *grep* cwindow
+
+" Act like D and C
+nnoremap Y y$
 
 " Copy and paste to system clipboard
 vmap <Leader>y "+y
@@ -143,6 +153,10 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
+
+" Tab navigation
+nnoremap J :tabprev<CR>
+nnoremap K :tabnext<CR>
 
 inoremap jj <ESC> " Press jj twice to Escape
 " nnoremap <Space> za " toggle the current fold
