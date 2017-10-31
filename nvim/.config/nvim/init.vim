@@ -184,16 +184,18 @@ Plug 'scrooloose/nerdtree' " File browser
 Plug 'vim-airline/vim-airline' " Status bar
 Plug 'christoomey/vim-tmux-navigator' " tmux integration
 Plug 'kana/vim-textobj-user'
+Plug 'michaeljsmith/vim-indent-object'
+
+Plug 'rizzatti/dash.vim' " dash documentation integration
+
+" Go
+Plug 'fatih/vim-go'
+
+" Ruby
 Plug 'nelstrom/vim-textobj-rubyblock'
 
+" Rails
 Plug 'tpope/vim-rails'
-
-" Plug 'neomake/neomake'
-" Plug 'tpope/vim-bundler'
-
-" Look at in the future
-" sjl/gundo.vim
-" vim-scripts/gitignore
 
 call plug#end()
 
@@ -202,6 +204,47 @@ call plug#end()
 let g:Tlist_Ctags_Cmd = 'ripper-tags -R --exclude=vendor'
 let g:rails_ctags_arguments = ''
 
+" vim-go
+let g:go_fmt_command = "goimports"
+let g:go_highlight_types = 1
+let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+let g:go_metalinter_autosave = 1
+
+augroup go
+  autocmd!
+
+  " Show by default 4 spaces for a tab
+  autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+
+  " go fmt on save - this happens out of the box with vim-go?
+  " autocmd BufWrite *.go :GoFmt
+
+  " :GoBuild and :GoTestCompile
+  autocmd FileType go nmap <leader>gb :<C-u>call <SID>build_go_files()<CR>
+
+  " :GoRun
+  autocmd FileType go nmap <leader>gr  <Plug>(go-run)
+
+  autocmd FileType go nmap <leader>gd  :GoDec
+
+  " :GoDoc
+  autocmd FileType go nmap <leader>gi <Plug>(go-doc)
+
+  " :GoAlternate  commands :A and :AT
+  autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+  autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+augroup END
+
+" build_go_files is a custom function that builds or compiles the test file.
+" It calls :GoBuild if its a Go file, or :GoTestCompile if it's a test file
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#cmd#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
 
 " airline
 set laststatus=2 " Show all the time
