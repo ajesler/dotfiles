@@ -8,3 +8,5 @@ vendor/cache
 
 *~
 .DS_Store
+
+config/projections.json
