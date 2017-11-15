@@ -18,7 +18,7 @@ set cursorline
 " Set the tags source
 set tags=./tags
 
-" colorscheme mustang
+colorscheme solarized
 set background=dark
 
 filetype plugin indent on             " Indent using filetype files if they
