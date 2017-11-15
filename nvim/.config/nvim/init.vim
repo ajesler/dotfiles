@@ -179,6 +179,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround' " change surroundings
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-commentary' " toggle comments
+Plug 'tpope/vim-repeat' " toggle comments
 Plug 'bronson/vim-trailing-whitespace' " Marks all trailing whitespace in red
 Plug 'scrooloose/nerdtree' " File browser
 Plug 'vim-airline/vim-airline' " Status bar
