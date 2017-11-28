@@ -191,6 +191,7 @@ Plug 'vim-airline/vim-airline' " Status bar
 Plug 'christoomey/vim-tmux-navigator' " tmux integration
 Plug 'kana/vim-textobj-user'
 Plug 'michaeljsmith/vim-indent-object'
+Plug 'kshenoy/vim-signature' " show marks in the gutter
 Plug 'thoughtbot/vim-rspec'
 
 Plug 'rizzatti/dash.vim' " dash documentation integration
