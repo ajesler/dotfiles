@@ -107,6 +107,11 @@ nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>t :NERDTreeToggle<CR>
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR> " strip trailing whitespace
 
+" RSpec.vim mappings
+map <Leader>rt :call RunCurrentSpecFile()<CR>
+map <Leader>rs :call RunNearestSpec()<CR>
+map <Leader>rl :call RunLastSpec()<CR>
+
 vmap <C-F> :cclose<CR>y:silent Ag <C-R>"<CR>
 nmap <C-F> :cclose<CR>yiw:silent Ag <C-R>"<CR>
 
@@ -186,6 +191,7 @@ Plug 'vim-airline/vim-airline' " Status bar
 Plug 'christoomey/vim-tmux-navigator' " tmux integration
 Plug 'kana/vim-textobj-user'
 Plug 'michaeljsmith/vim-indent-object'
+Plug 'thoughtbot/vim-rspec'
 
 Plug 'rizzatti/dash.vim' " dash documentation integration
 
@@ -204,6 +210,9 @@ call plug#end()
 " vim-rails
 let g:Tlist_Ctags_Cmd = 'ripper-tags -R --exclude=vendor'
 let g:rails_ctags_arguments = ''
+
+" vim-rspec
+let g:rspec_command = "!uk spring rspec {spec}"
 
 " vim-go
 let g:go_fmt_command = "goimports"
