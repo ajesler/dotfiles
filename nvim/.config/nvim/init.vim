@@ -137,10 +137,6 @@ nmap <Leader>P "+P
 vmap <Leader>p "+p
 vmap <Leader>P "+P
 
-"" Use tab key to match bracket pairs
-nnoremap <tab> %
-vnoremap <tab> %
-
 "" Unmap the arrow keys
 nnoremap <up> <nop>
 nnoremap <down> <nop>
@@ -162,8 +158,8 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
 " Tab navigation
-nnoremap J :tabprev<CR>
-nnoremap K :tabnext<CR>
+" nnoremap J :tabprev<CR>
+" nnoremap K :tabnext<CR>
 
 inoremap jj <ESC> " Press jj twice to Escape
 " nnoremap <Space> za " toggle the current fold
