@@ -9,7 +9,7 @@ set showmatch " show matching bracket when hovering over one
 
 set foldenable          " enable folding
 set foldmethod=indent   " fold based on indent level
-set foldlevel=99
+set foldlevel=99        " fold level that will be applied when opening files
 
 set modelines=0
 set backspace=indent,eol,start
