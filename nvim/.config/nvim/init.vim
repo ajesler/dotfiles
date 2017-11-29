@@ -114,6 +114,11 @@ map <Leader>rl :call RunLastSpec()<CR>
 map <Leader>ra :call RunAllSpecs()<CR>
 map <Leader>rr :Copen<CR>G<CR>
 
+" Fugitive shortcuts
+nmap <Leader>gs :Gstatus<CR>
+nmap <Leader>gc :Gcommit<CR>
+nmap <Leader>gd :GFiles?<CR>
+
 vmap <C-F> :cclose<CR>y:silent Ag <C-R>"<CR>
 nmap <C-F> :cclose<CR>yiw:silent Ag <C-R>"<CR>
 
