@@ -90,26 +90,22 @@ if has("mac") || has("gui_macvim") || has("gui_mac")
   nnoremap <leader>cF :let @*=expand("%:p")<CR>
 
   " filename       (foo.txt)
-  nnoremap <leader>ct :let @*=expand("%:t")<CR>
+  nnoremap <leader>cn :let @*=expand("%:t")<CR>
 
   " directory name (/something/src)
-  nnoremap <leader>ch :let @*=expand("%:p:h")<CR>
+  nnoremap <leader>cd :let @*=expand("%:p:h")<CR>
 endif
 
 " fix regex handling
 nnoremap / /\v
 vnoremap / /\v
 
-" Use tab to jump between brackets
-nnoremap <tab> %
-vnoremap <tab> %
-
 " Leader mappings
 nnoremap <leader><space> :noh<cr> " can use <leader><space> to clear the search
 nnoremap <leader>f :Files<CR>
 nnoremap <leader>a :Ag<CR>
 nnoremap <leader>b :Buffers<CR>
-nnoremap <leader>t :NERDTreeToggle<CR>
+nnoremap <leader>t :NERDTreeFind<CR>
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR> " strip trailing whitespace
 
 " RSpec.vim mappings
