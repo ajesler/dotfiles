@@ -50,6 +50,11 @@ set expandtab
 set gdefault    " substitutions apply globally, rather than current line
 set pastetoggle=<F2> " Toggle paste mode so autoindents are not applied
 
+" auto writing
+set autowrite     " write when leaving buffer
+set autowriteall  " write when leaving buffer (always)
+autocmd FocusLost * :wa " write on loss of focus
+
 "" Copy and paste
 set clipboard=unnamedplus
 " yy => copies to clipboard
