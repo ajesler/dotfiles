@@ -116,6 +116,7 @@ map <Leader>ra :call RunAllSpecs()<CR>
 map <Leader>rr :Copen<CR>G<CR>
 
 " Fugitive shortcuts
+nmap <Leader>gb :Gblame<CR>
 nmap <Leader>gs :Gstatus<CR>
 nmap <Leader>gc :Gcommit<CR>
 nmap <Leader>gd :GFiles?<CR>
