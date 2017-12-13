@@ -7,6 +7,9 @@
 #   diff = diff-so-fancy | less
 #   log = diff-highlight | less
 #   show = diff-highlight | less
+#
+# [interactive]
+#   difffilter = diff-highlight | less
 
 
 [color]
