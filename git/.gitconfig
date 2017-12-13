@@ -55,6 +55,7 @@
   mnemonicprefix = true
   renames = copies
   renameslimit = 0
+	compactionHeuristic = true
 
 [branch]
   autosetupmerge = true
