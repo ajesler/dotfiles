@@ -32,12 +32,12 @@ set scrolloff=3 " have some context around the current line always on screen
 set autoread " Auto-reload buffers when file changed on disk
 set updatecount=0
 
+set noswapfile
 set backup
+set backupdir=~/.config/nvim/.backup//
 set undofile
 set undolevels=1000
 set undoreload=1
-set backupdir=~/.config/nvim/.backup//
-set directory=~/.config/nvim/.swap//
 set undodir=~/.config/nvim/.undo//
 
 set mouse=a " Use mouse to scroll
