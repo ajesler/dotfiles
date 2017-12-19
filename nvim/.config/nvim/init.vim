@@ -200,6 +200,7 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'kshenoy/vim-signature' " show marks in the gutter
 Plug 'thoughtbot/vim-rspec'
 Plug 'tpope/vim-dispatch'
+Plug 'w0rp/ale'
 
 Plug 'rizzatti/dash.vim' " dash documentation integration
 
@@ -221,6 +222,12 @@ let g:rails_ctags_arguments = ''
 
 " vim-rspec
 let g:rspec_command = 'Dispatch uk spring rspec {spec}'
+
+" ale
+let g:ale_sign_warning = '▲'
+let g:ale_sign_error = '✗'
+highlight link ALEWarningSign String
+highlight link ALEErrorSign Title
 
 " let g:rspec_command = ':call ShowRSpecOutput("{spec}")'
 function! ShowRSpecOutput(specs)
