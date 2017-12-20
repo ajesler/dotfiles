@@ -53,8 +53,9 @@ set pastetoggle=<F2> " Toggle paste mode so autoindents are not applied
 " auto writing
 set autowrite     " write when leaving buffer
 set autowriteall  " write when leaving buffer (always)
-autocmd FocusLost * :wa " write on loss of focus
-autocmd BufLeave,FocusLost * silent! wall
+" autocmd FocusLost * silent! :wall " write on loss of focus
+autocmd BufLeave * silent! :wall
+autocmd FocusLost * silent! :wall
 
 "" Copy and paste
 set clipboard=unnamedplus
