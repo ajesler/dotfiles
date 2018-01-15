@@ -2,6 +2,7 @@
 # https://github.com/Homebrew/homebrew-bundle
 
 ### Packages
+brew 'stow'
 brew 'neovim'
 
 brew 'git'

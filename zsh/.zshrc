@@ -1,3 +1,5 @@
+fpath=(~/.zsh $fpath)
+
 # Options
 setopt auto_cd
 setopt no_beep # don't beep on error
@@ -5,7 +7,7 @@ setopt pushd_ignore_dups # don't push multiple copies of the same directory onto
 setopt multios # perform implicit tees or cats when multiple redirections are attempted
 
 # History
-setopt inc_append_history # Add comamnds as they are typed, don't wait until shell exit
+setopt inc_append_history # Add comamnds as they are typed, dont wait until shell exit
 setopt append_history # Allow multiple terminal sessions to all append to one zsh command history
 setopt hist_ignore_dups # Do not write events to history that are duplicates of previous events
 setopt hist_ignore_space # remove command line from history list when first character on the line is a space

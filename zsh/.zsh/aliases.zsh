@@ -1,3 +1,4 @@
+alias vim=nivm
 alias v=nvim
 
 # Navigation
@@ -13,12 +14,15 @@ alias zshr="source ~/.zshrc"
 # Git
 alias g=git
 alias gap="git add -p"
-alias gcv="git commit -v"
 alias gco="git checkout"
 alias gs="git status"
 alias gd="git diff"
 alias gds="git diff --cached"
 alias gcl="git clone"
+alias gb="git branch"
+
+# Ruby
+alias be="bundle exec"
 
 # Tmuxinator
 alias tm=tmuxinator

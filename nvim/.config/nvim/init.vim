@@ -222,7 +222,7 @@ let g:Tlist_Ctags_Cmd = 'ripper-tags -R --exclude=vendor'
 let g:rails_ctags_arguments = ''
 
 " vim-rspec
-let g:rspec_command = 'Dispatch uk spring rspec {spec}'
+let g:rspec_command = 'Dispatch bundle exec rspec {spec}'
 
 " ale
 let g:ale_sign_warning = '▲'
@@ -234,7 +234,7 @@ highlight link ALEErrorSign Title
 function! ShowRSpecOutput(specs)
   " http://learnvimscriptthehardway.stevelosh.com/chapters/52.html#scratch-splits
   " Run the spec
-  let spec_run_results = system('uk spring rspec ' . a:specs)
+  let spec_run_results = system('rspec ' . a:specs)
 
   " Open a new split and set it up
   split __RSpec_Output__
