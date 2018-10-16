@@ -43,6 +43,7 @@ bindkey '^r' history-incremental-search-backward
 
 source $HOME/.zsh/prompt.zsh
 source $HOME/.zsh/fzf.zsh
+source $HOME/.zsh/heroku.zsh
 
 # Load local config if it exists
 [ -e $HOME/.zshrc_local ] && source $HOME/.zshrc_local
