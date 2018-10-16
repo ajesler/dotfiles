@@ -109,6 +109,8 @@ nnoremap <leader>a :Ag<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>t :NERDTreeFind<CR>
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR> " strip trailing whitespace
+xnoremap <leader>p "_dP
+xnoremap <leader>co :copen
 
 " RSpec.vim mappings
 map <Leader>rs :call RunCurrentSpecFile()<CR>
@@ -131,6 +133,7 @@ nmap <C-F> :cclose<CR>yiw:silent Ag <C-R>"<CR>
 nnoremap <leader>v <C-w>v<C-w>l
 " Use <leader>s to open a new horizontal split and switch to it
 nnoremap <leader>s <C-w>s<C-w>j
+nnoremap <leader>co :copen<CR>
 
 " nnoremap <leader>g :Ggrep
 autocmd QuickFixCmdPost *grep* cwindow
@@ -191,7 +194,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround' " change surroundings
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-commentary' " toggle comments
-Plug 'tpope/vim-repeat' " toggle comments
+Plug 'tpope/vim-repeat'
 Plug 'bronson/vim-trailing-whitespace' " Marks all trailing whitespace in red
 Plug 'scrooloose/nerdtree' " File browser
 Plug 'vim-airline/vim-airline' " Status bar
@@ -202,8 +205,6 @@ Plug 'kshenoy/vim-signature' " show marks in the gutter
 Plug 'thoughtbot/vim-rspec'
 Plug 'tpope/vim-dispatch'
 Plug 'w0rp/ale'
-
-Plug 'rizzatti/dash.vim' " dash documentation integration
 
 " Go
 Plug 'fatih/vim-go'
@@ -217,6 +218,22 @@ Plug 'tpope/vim-rails'
 call plug#end()
 
 " --- Plugin Settings --- "
+" fzf
+" CTRL-A CTRL-Q to select all and build quickfix list
+function! s:build_quickfix_list(lines)
+  call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+  copen
+  cc
+endfunction
+
+let g:fzf_action = {
+  \ 'ctrl-q': function('s:build_quickfix_list'),
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
+
 " vim-rails
 let g:Tlist_Ctags_Cmd = 'ripper-tags -R --exclude=vendor'
 let g:rails_ctags_arguments = ''
