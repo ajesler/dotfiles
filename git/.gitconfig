@@ -51,8 +51,8 @@
   recent = for-each-ref --count=15 --sort=-committerdate refs/heads/ --format="%(refname:short)"
 
   # checkout
-  cor  = "!f() { $(git recent | fzf); }; f"
-  co  = "!f() { $(git branch | fzf); }; f"
+  cor  = "!f() { git checkout $(git recent | fzf); }; f"
+  co  = "!f() { git checkout $(git branch | fzf); }; f"
 
 [push]
   default = simple
