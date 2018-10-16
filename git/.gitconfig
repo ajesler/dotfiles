@@ -11,6 +11,9 @@
 # [interactive]
 #   difffilter = diff-highlight | less
 
+# To clean up branches:
+# git remote prune origin
+# git branch -vv | grep 'origin/.*: gone]' | awk '{print $1}' | xargs git branch -d
 
 [color]
   branch = auto
@@ -19,7 +22,7 @@
 	ui = true
 
 [pretty]
-  olpc = "%C(green)%h %C(yellow)[%ad]%Cred%d %Creset%s%C(cyan) [%aN]%Creset"
+  olpc = "%C(magenta)%h %C(yellow)[%ad]%Cred%d %Creset%s%C(cyan) [%aN]%Creset"
   olpcnc = "%h [%ad]%d %s [%aN]"
 
 [alias]
@@ -30,9 +33,11 @@
   ld = log --format=olpc --decorate --date=relative --stat -p
   lf = log --format=olpc --decorate --date=relative --stat
   lfn = log --format=olpc --decorate --date=relative --name-only
+  today = log --since=00:00:00 --all --no-merges --oneline --author=
 
   # diff
   ds = diff --staged
+  conflicted = diff --name-only --diff-filter=U
 
   # commit
   cv = commit -v
@@ -42,6 +47,12 @@
   track = "!f() { BRANCH=$(git branchname); git branch --set-upstream-to=origin/${BRANCH}; }; f"
   cpbn = "!f() { git branchname | pbcopy; }; f"
   commitlog = "!f() { BRANCH=$(git rev-parse --abbrev-ref HEAD); git log --format=\"[${BRANCH} %h] %s\" --date=short --reverse $1; }; f"
+  push-up = "!f() { BRANCH=$(git branchname); CMD=\"git push --set-upstream origin ${BRANCH}\"; echo \"${CMD}\"; eval $CMD; }; f"
+  recent = for-each-ref --count=15 --sort=-committerdate refs/heads/ --format="%(refname:short)"
+
+  # checkout
+  cor  = "!f() { $(git recent | fzf); }; f"
+  co  = "!f() { $(git branch | fzf); }; f"
 
 [push]
   default = simple
@@ -67,7 +78,8 @@
   pushNonFastForward = false
 
 [user]
-	name = ajesler
+	name = AJ Esler
+	email = aj@hatchinvest.nz
 
 [github]
   user = ajesler
