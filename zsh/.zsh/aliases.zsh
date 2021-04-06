@@ -1,3 +1,5 @@
+alias notes="tmux split-window 'cd ${HOME}/Documents/notes; ${EDITOR} .'"
+
 alias vim=nivm
 alias v=nvim
 
@@ -15,7 +17,7 @@ alias zshr="source ~/.zshrc"
 alias g=git
 alias gap="git add -p"
 alias gco="git checkout"
-alias gs="git status"
+alias gs="git status -u"
 alias gd="git diff"
 alias gds="git diff --cached"
 alias gcl="git clone"
