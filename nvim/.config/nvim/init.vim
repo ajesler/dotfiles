@@ -18,8 +18,9 @@ set cursorline
 " Set the tags source
 set tags=./tags
 
-colorscheme solarized
-set background=dark
+" colorscheme solarized
+" " colorscheme NeoSolarized
+" set background=dark
 
 filetype plugin indent on             " Indent using filetype files if they
 set autoindent                        " Copy the indentation from the previous
@@ -58,7 +59,7 @@ autocmd BufLeave * silent! :wall
 autocmd FocusLost * silent! :wall
 
 "" Copy and paste
-set clipboard=unnamedplus
+set clipboard+=unnamedplus
 " yy => copies to clipboard
 " p  => pastes from clipboard
 
@@ -84,19 +85,19 @@ nnoremap <C-W>M <C-W>\| <C-W>_
 nnoremap <C-W>m <C-W>=
 
 " copy current file name (relative/absolute) to system clipboard
-if has("mac") || has("gui_macvim") || has("gui_mac")
-  " relative path  (src/foo.txt)
-  nnoremap <leader>cf :let @*=expand("%")<CR>
+" if has("mac") || has("gui_macvim") || has("gui_mac")
+" relative path  (src/foo.txt)
+nnoremap <leader>cf :let @+=expand("%")<CR>
 
-  " absolute path  (/something/src/foo.txt)
-  nnoremap <leader>cF :let @*=expand("%:p")<CR>
+" absolute path  (/something/src/foo.txt)
+nnoremap <leader>cF :let @+=expand("%:p")<CR>
 
-  " filename       (foo.txt)
-  nnoremap <leader>cn :let @*=expand("%:t")<CR>
+" filename       (foo.txt)
+nnoremap <leader>cn :let @+=expand("%:t")<CR>
 
-  " directory name (/something/src)
-  nnoremap <leader>cd :let @*=expand("%:p:h")<CR>
-endif
+" directory name (/something/src)
+nnoremap <leader>cd :let @+=expand("%:p:h")<CR>
+" endif
 
 " fix regex handling
 nnoremap / /\v
@@ -127,6 +128,9 @@ nmap <Leader>gd :GFiles?<CR>
 
 vmap <C-F> :cclose<CR>y:silent Ag <C-R>"<CR>
 nmap <C-F> :cclose<CR>yiw:silent Ag <C-R>"<CR>
+
+" SideSearch current word and return to original window
+nnoremap <Leader>ss :SideSearch <C-r><C-w><CR> | wincmd p
 
 " Close a window panel
 " Use <leader>v to open a new vertical split and switch to it
@@ -189,7 +193,9 @@ nmap <silent> <leader>sv :source $MYVIMRC<CR>
 " --- Plugin --- "
 call plug#begin('~/.config/nvim/plugged')
 
-Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+" Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+Plug '~/.fzf'
+Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround' " change surroundings
 Plug 'tpope/vim-endwise'
@@ -205,9 +211,12 @@ Plug 'kshenoy/vim-signature' " show marks in the gutter
 Plug 'thoughtbot/vim-rspec'
 Plug 'tpope/vim-dispatch'
 Plug 'w0rp/ale'
+Plug 'iCyMind/NeoSolarized'
+Plug 'lifepillar/vim-solarized8'
+Plug 'ddrscott/vim-side-search'
 
 " Go
-Plug 'fatih/vim-go'
+" Plug 'fatih/vim-go'
 
 " Ruby
 Plug 'nelstrom/vim-textobj-rubyblock'
@@ -218,6 +227,9 @@ Plug 'tpope/vim-rails'
 call plug#end()
 
 " --- Plugin Settings --- "
+set background=dark
+colorscheme solarized8
+
 " fzf
 " CTRL-A CTRL-Q to select all and build quickfix list
 function! s:build_quickfix_list(lines)
@@ -264,46 +276,46 @@ function! ShowRSpecOutput(specs)
 endfunction
 
 " vim-go
-let g:go_fmt_command = "goimports"
-let g:go_highlight_types = 1
-let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
-let g:go_metalinter_autosave = 1
+" let g:go_fmt_command = "goimports"
+" let g:go_highlight_types = 1
+" let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+" let g:go_metalinter_autosave = 1
 
-augroup go
-  autocmd!
+" augroup go
+"   autocmd!
 
-  " Show by default 4 spaces for a tab
-  autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+"   " Show by default 4 spaces for a tab
+"   autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 
-  " go fmt on save - this happens out of the box with vim-go?
-  " autocmd BufWrite *.go :GoFmt
+"   " go fmt on save - this happens out of the box with vim-go?
+"   " autocmd BufWrite *.go :GoFmt
 
-  " :GoBuild and :GoTestCompile
-  autocmd FileType go nmap <leader>gb :<C-u>call <SID>build_go_files()<CR>
+"   " :GoBuild and :GoTestCompile
+"   autocmd FileType go nmap <leader>gb :<C-u>call <SID>build_go_files()<CR>
 
-  " :GoRun
-  autocmd FileType go nmap <leader>gr  <Plug>(go-run)
+"   " :GoRun
+"   autocmd FileType go nmap <leader>gr  <Plug>(go-run)
 
-  autocmd FileType go nmap <leader>gd  :GoDec
+"   autocmd FileType go nmap <leader>gd  :GoDec
 
-  " :GoDoc
-  autocmd FileType go nmap <leader>gi <Plug>(go-doc)
+"   " :GoDoc
+"   autocmd FileType go nmap <leader>gi <Plug>(go-doc)
 
-  " :GoAlternate  commands :A and :AT
-  autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
-  autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
-augroup END
+"   " :GoAlternate  commands :A and :AT
+"   autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+"   autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+" augroup END
 
-" build_go_files is a custom function that builds or compiles the test file.
-" It calls :GoBuild if its a Go file, or :GoTestCompile if it's a test file
-function! s:build_go_files()
-  let l:file = expand('%')
-  if l:file =~# '^\f\+_test\.go$'
-    call go#cmd#Test(0, 1)
-  elseif l:file =~# '^\f\+\.go$'
-    call go#cmd#Build(0)
-  endif
-endfunction
+" " build_go_files is a custom function that builds or compiles the test file.
+" " It calls :GoBuild if its a Go file, or :GoTestCompile if it's a test file
+" function! s:build_go_files()
+"   let l:file = expand('%')
+"   if l:file =~# '^\f\+_test\.go$'
+"     call go#cmd#Test(0, 1)
+"   elseif l:file =~# '^\f\+\.go$'
+"     call go#cmd#Build(0)
+"   endif
+" endfunction
 
 " airline
 set laststatus=2 " Show all the time
@@ -319,3 +331,12 @@ else
   let &t_SI = "\<Esc>]50;CursorShape=1\x7"
   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
+
+" How should we execute the search?
+" --heading and --stats are required!
+let g:side_search_prg = 'ag'
+ \. " --ignore='*.js.map'"
+ \. " --heading --stats -B 1 -A 4"
+" Can use vnew or new
+let g:side_search_splitter = 'new'
+let g:side_search_split_pct = 0.3
