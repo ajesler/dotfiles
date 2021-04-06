@@ -41,6 +41,7 @@
 
   # commit
   cv = commit -v
+  uncommit = reset --soft HEAD~1
 
   # branch
   branchname = rev-parse --abbrev-ref HEAD
@@ -100,3 +101,5 @@
 	old = red bold
 	new = 34 bold
 	whitespace = red reverse
+[http]
+	postBuffer = 10485760
