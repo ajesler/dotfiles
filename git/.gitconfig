@@ -38,6 +38,7 @@
   # diff
   ds = diff --staged
   conflicted = diff --name-only --diff-filter=U
+  rdb = "!f() { git range-diff origin/master $(git rev-parse --abbrev-ref --symbolic-full-name @{u}) HEAD; }; f"
 
   # commit
   cv = commit -v
@@ -49,11 +50,11 @@
   cpbn = "!f() { git branchname | pbcopy; }; f"
   commitlog = "!f() { BRANCH=$(git rev-parse --abbrev-ref HEAD); git log --format=\"[${BRANCH} %h] %s\" --date=short --reverse $1; }; f"
   push-up = "!f() { BRANCH=$(git branchname); CMD=\"git push --set-upstream origin ${BRANCH}\"; echo \"${CMD}\"; eval $CMD; }; f"
-  recent = for-each-ref --count=15 --sort=-committerdate refs/heads/ --format="%(refname:short)"
+  recent = for-each-ref --count=35 --sort=-committerdate refs/heads/ --format="%(refname:short)"
 
   # checkout
   cor  = "!f() { git checkout $(git recent | fzf); }; f"
-  co  = "!f() { git checkout $(git branch | fzf); }; f"
+  co = "!f() { git checkout $(git branch | fzf); }; f"
 
 [push]
   default = simple
