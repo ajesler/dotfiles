@@ -1,3 +1,8 @@
+export ZSH="/Users/ajeselr/.oh-my-zsh"
+ZSH_THEME="Dracula"
+
+source $ZSH/oh-my-zsh.sh
+
 fpath=(~/.zsh $fpath)
 
 # Options
@@ -32,6 +37,7 @@ export HISTFILE=~/.zsh_history
 export SAVEHIST=$HISTSIZE
 
 export FZF_DEFAULT_COMMAND='ag -g ""'
+export BAT_THEME="Dracula"
 
 # Bindings
 bindkey -v
@@ -46,3 +52,5 @@ source $HOME/.zsh/fzf.zsh
 
 # Load local config if it exists
 [ -e $HOME/.zshrc_local ] && source $HOME/.zshrc_local
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
