@@ -26,11 +26,9 @@ brew 'postgresql'
 brew 'pwgen'
 
 ### Casks
-tap 'caskroom/cask'
+tap 'homebrew/cask'
 cask_args appdir: '/Applications'
 
 cask 'ngrok'
-
 cask 'iterm2'
-
 cask "google-chrome"
