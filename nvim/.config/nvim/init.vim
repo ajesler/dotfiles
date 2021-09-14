@@ -18,10 +18,6 @@ set cursorline
 " Set the tags source
 set tags=./tags
 
-" colorscheme solarized
-" " colorscheme NeoSolarized
-" set background=dark
-
 filetype plugin indent on             " Indent using filetype files if they
 set autoindent                        " Copy the indentation from the previous
 set smartindent                       " Insert an extra indent level in some
@@ -106,10 +102,11 @@ vnoremap / /\v
 " Leader mappings
 nnoremap <leader><space> :noh<cr> " can use <leader><space> to clear the search
 nnoremap <leader>f :Files<CR>
-nnoremap <leader>a :Ag<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>t :NERDTreeFind<CR>
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR> " strip trailing whitespace
+" bind K to grep word under cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 xnoremap <leader>p "_dP
 xnoremap <leader>co :copen
 
@@ -192,9 +189,9 @@ nmap <silent> <leader>sv :source $MYVIMRC<CR>
 
 " --- Plugin --- "
 call plug#begin('~/.config/nvim/plugged')
+Plug 'dracula/vim', { 'as': 'dracula' }
 
-" Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
-Plug '~/.fzf'
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround' " change surroundings
@@ -212,7 +209,6 @@ Plug 'thoughtbot/vim-rspec'
 Plug 'tpope/vim-dispatch'
 Plug 'w0rp/ale'
 Plug 'iCyMind/NeoSolarized'
-Plug 'lifepillar/vim-solarized8'
 Plug 'ddrscott/vim-side-search'
 
 " Go
@@ -228,9 +224,11 @@ call plug#end()
 
 " --- Plugin Settings --- "
 set background=dark
-colorscheme solarized8
+colorscheme dracula
 
 " fzf
+let $FZF_DEFAULT_OPTS="--ansi --preview-window 'right:80%' --layout reverse --margin=1,4 --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
+
 " CTRL-A CTRL-Q to select all and build quickfix list
 function! s:build_quickfix_list(lines)
   call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
@@ -332,11 +330,24 @@ else
   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 
+" The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
 " How should we execute the search?
 " --heading and --stats are required!
 let g:side_search_prg = 'ag'
  \. " --ignore='*.js.map'"
  \. " --heading --stats -B 1 -A 4"
+
 " Can use vnew or new
 let g:side_search_splitter = 'new'
 let g:side_search_split_pct = 0.3
