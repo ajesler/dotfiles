@@ -24,6 +24,7 @@
 [pretty]
   olpc = "%C(magenta)%h %C(yellow)[%ad]%Cred%d %Creset%s%C(cyan) [%aN]%Creset"
   olpcnc = "%h [%ad]%d %s [%aN]"
+  fulldescription = "%C(magenta)%h %C(yellow)[%ad]%Creset %C(cyan)%s%Creset\n%b\n"
 
 [alias]
   la = "!git config -l | grep alias | cut -c 7-" # list aliases
@@ -31,6 +32,7 @@
   # log
   ls = log --format=olpc --decorate --date=relative
   ld = log --format=olpc --decorate --date=relative --stat -p
+  lm = log --merges --format=fulldescription --decorate --date=relative --stat -p
   lf = log --format=olpc --decorate --date=relative --stat
   lfn = log --format=olpc --decorate --date=relative --name-only
   today = log --since=00:00:00 --all --no-merges --oneline --author=
