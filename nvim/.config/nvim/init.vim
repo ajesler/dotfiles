@@ -102,6 +102,7 @@ vnoremap / /\v
 " Leader mappings
 nnoremap <leader><space> :noh<cr> " can use <leader><space> to clear the search
 nnoremap <leader>f :Files<CR>
+nnoremap <leader>a :Ag<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>t :NERDTreeFind<CR>
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR> " strip trailing whitespace
