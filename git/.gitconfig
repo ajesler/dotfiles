@@ -51,7 +51,7 @@
   track = "!f() { BRANCH=$(git branchname); git branch --set-upstream-to=origin/${BRANCH}; }; f"
   cpbn = "!f() { git branchname | pbcopy; }; f"
   commitlog = "!f() { BRANCH=$(git rev-parse --abbrev-ref HEAD); git log --format=\"[${BRANCH} %h] %s\" --date=short --reverse $1; }; f"
-  push-up = "!f() { BRANCH=$(git branchname); CMD=\"git push --set-upstream origin ${BRANCH}\"; echo \"${CMD}\"; eval $CMD; }; f"
+  push-up = "!f() { BRANCH=$(git branchname); CMD=\"git push --set-upstream origin ${BRANCH} ${1}\"; echo \"${CMD}\"; eval $CMD; }; f"
   recent = for-each-ref --count=35 --sort=-committerdate refs/heads/ --format="%(refname:short)"
 
   # checkout
