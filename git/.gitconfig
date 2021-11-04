@@ -28,6 +28,8 @@
 
 [alias]
   la = "!git config -l | grep alias | cut -c 7-" # list aliases
+  mb = merge-base HEAD origin/master
+  ras =  "!f() { git rebase -i --autosquash $(git mb); }; f"
 
   # log
   ls = log --format=olpc --decorate --date=relative
