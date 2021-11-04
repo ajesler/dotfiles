@@ -57,7 +57,8 @@
   recent = for-each-ref --count=35 --sort=-committerdate refs/heads/ --format="%(refname:short)"
 
   # checkout
-  cor  = "!f() { git checkout $(git recent | fzf); }; f"
+  # cor  = "!f() { git checkout $(git recent | fzf --preview='git ls {}' ); }; f"
+  cor = checkout-recent
   co = "!f() { git checkout $(git branch | fzf); }; f"
 
 [push]
