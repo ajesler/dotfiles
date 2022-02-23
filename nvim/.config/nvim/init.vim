@@ -15,6 +15,8 @@ set modelines=0
 set backspace=indent,eol,start
 set cursorline
 
+set cmdheight=2         " Increase the status bar height to allow more room for ALE messages
+
 " Set the tags source
 set tags=./tags
 
