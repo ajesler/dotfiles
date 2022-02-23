@@ -31,6 +31,11 @@
   fixup = "!f() { git log --format=olpc --decorate --date=relative --max-count 200 | fzf --ansi --preview 'git show --color=always {1}' | cut -d' ' -f 1 | xargs -r git commit --edit --fixup; }; f"
   mb = merge-base HEAD origin/master
   ras =  "!f() { git rebase -i --autosquash $(git mb); }; f"
+  rom = rebase -i origin/master
+
+  # https://stackoverflow.com/questions/8475448/find-merge-commit-which-include-a-specific-commit
+  find-merge = "!sh -c 'commit=$0 && branch=${1:-HEAD} && (git rev-list $commit..$branch --ancestry-path | cat -n; git rev-list $commit..$branch --first-parent | cat -n) | sort -k2 -s | uniq -f1 -d | sort -n | tail -1 | cut -f2'"
+  show-merge = "!sh -c 'merge=$(git find-merge $0 $1) && [ -n \"$merge\" ] && git show $merge'"
 
   # log
   ls = log --format=olpc --decorate --date=relative
