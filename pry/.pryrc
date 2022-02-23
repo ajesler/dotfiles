@@ -13,7 +13,7 @@ end
 
 # === History ===
 Pry::Commands.command(/^$/, "repeat last command") do
-  _pry_.run_command Pry.history.to_a.last
+  pry_instance.run_command Pry.history.to_a.last
 end
 
 # === PRY Commands ===
