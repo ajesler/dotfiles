@@ -111,8 +111,16 @@ nnoremap <leader>t :NERDTreeFind<CR>
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR> " strip trailing whitespace
 " bind K to grep word under cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-xnoremap <leader>p "_dP
 xnoremap <leader>co :copen
+
+" " delete without yanking
+" nnoremap <leader>d "_d
+" vnoremap <leader>d "_d
+
+" " replace currently selected text with default register
+" " without yanking it
+vnoremap <leader>p "_dP
+xnoremap <leader>p "_dP
 
 " RSpec.vim mappings
 map <Leader>rs :call RunCurrentSpecFile()<CR>
