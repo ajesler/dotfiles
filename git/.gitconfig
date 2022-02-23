@@ -28,6 +28,7 @@
 
 [alias]
   la = "!git config -l | grep alias | cut -c 7-" # list aliases
+  fixup = "!f() { git log --format=olpc --decorate --date=relative --max-count 200 | fzf --ansi --preview 'git show --color=always {1}' | cut -d' ' -f 1 | xargs -r git commit --edit --fixup; }; f"
   mb = merge-base HEAD origin/master
   ras =  "!f() { git rebase -i --autosquash $(git mb); }; f"
 
