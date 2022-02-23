@@ -27,6 +27,3 @@ alias gb="git branch"
 alias be="bundle exec"
 alias ber="bundle exec rspec"
 alias bec="bundle exec rails console"
-
-# Tmuxinator
-alias tm=tmuxinator
