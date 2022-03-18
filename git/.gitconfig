@@ -37,6 +37,10 @@
   find-merge = "!sh -c 'commit=$0 && branch=${1:-HEAD} && (git rev-list $commit..$branch --ancestry-path | cat -n; git rev-list $commit..$branch --first-parent | cat -n) | sort -k2 -s | uniq -f1 -d | sort -n | tail -1 | cut -f2'"
   show-merge = "!sh -c 'merge=$(git find-merge $0 $1) && [ -n \"$merge\" ] && git show $merge'"
 
+  # add
+  # https://spin.atomicobject.com/2018/04/05/fuzzy-find-git-add/
+  af = !git ls-files -m -o --exclude-standard | fzf --print0 -m | xargs -0 -t -o git add
+
   # log
   ls = log --format=olpc --decorate --date=relative
   ld = log --format=olpc --decorate --date=relative --stat -p
