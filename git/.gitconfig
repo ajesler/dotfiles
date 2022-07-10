@@ -1,7 +1,15 @@
 [core]
   editor = nvim
 	excludesfile = /Users/ajesler/.gitignore_global
+  pager = delta # Added when switching to delta
   # pager = diff-so-fancy | less --tabs=4 -RFX
+
+[interactive]
+  diffFilter = delta --color-only # Added when switching to delta
+
+[delta] # Added when switching to delta
+    navigate = true    # use n and N to move between diff sections
+    light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
 
 # [pager]
 #   diff = diff-so-fancy | less
@@ -81,12 +89,14 @@
   stat = true
   ff = false
   log = true
+  conflictstyle = diff3 # Added when switching to delta
 
 [diff]
   mnemonicprefix = true
   renames = copies
   renameslimit = 0
 	compactionHeuristic = true
+  colorMoved = default # Added when switching to delta
 
 [branch]
   autosetupmerge = true
