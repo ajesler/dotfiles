@@ -1,4 +1,4 @@
-branch=($(git for-each-ref --count=35 --sort=-committerdate refs/heads/ --format="%(refname:short)" | fzf --ansi --preview 'git log --format=olpc --decorate --date=relative --color=always {}'))
+branch=($(git for-each-ref --count=150 --sort=-committerdate refs/heads/ --format="%(refname:short)" | fzf --ansi --preview 'git log --format=olpc --decorate --date=relative --color=always {}'))
 
 # If no branch passed (e.g. if Esc pressed), return to terminal
 if [ -z "${branch}" ]; then

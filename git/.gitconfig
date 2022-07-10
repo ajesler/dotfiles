@@ -72,7 +72,7 @@
   cpbn = "!f() { git branchname | pbcopy; }; f"
   commitlog = "!f() { BRANCH=$(git rev-parse --abbrev-ref HEAD); git log --format=\"[${BRANCH} %h] %s\" --date=short --reverse $1; }; f"
   push-up = "!f() { BRANCH=$(git branchname); CMD=\"git push --set-upstream origin ${BRANCH} ${1}\"; echo \"${CMD}\"; eval $CMD; }; f"
-  recent = for-each-ref --count=35 --sort=-committerdate refs/heads/ --format="%(refname:short)"
+  recent = for-each-ref --count=150 --sort=-committerdate refs/heads/ --format="%(refname:short)"
 
   # checkout
   # cor  = "!f() { git checkout $(git recent | fzf --preview='git ls {}' ); }; f"
