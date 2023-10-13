@@ -333,6 +333,8 @@ endfunction
 
 " airline
 set laststatus=2 " Show all the time
+let g:airline#extensions#branch#enabled = 0
+let g:airline#extensions#fugitiveline#enabled = 0
 
 " NERDTree
 let NERDTreeShowHidden=1 " toggled via Shift+i
