@@ -47,6 +47,14 @@
   # https://spin.atomicobject.com/2018/04/05/fuzzy-find-git-add/
   af = !git ls-files -m -o --exclude-standard | uniq | fzf --print0 -m --tac | xargs -0 -t -o git add
 
+  # == changes
+  # Use like `git hide config.yml` to ignore local changes to config.yml
+  hide = update-index --assume-unchanged
+  # Use like `git unhide config.yml` to again see local changes to config.yml
+  unhide = update-index --no-assume-unchanged
+  # Print out the hidden files
+  hidden = !git ls-files -v | grep \"^[a-z]\"
+
   # commiting
   c = commit
   cv = commit -v
