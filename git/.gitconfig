@@ -77,6 +77,8 @@
   ras =  "!f() { git rebase -i --autosquash $(git mb); }; f"
   # Rebase onto master and auto-squash fixup commits
   rasm =  "!f() { git fetch && git rebase -i --autosquash origin/master; }; f"
+  # Continue
+  rc = rebase --continue
 
   # == log
   ls = log --format=olpc --decorate --date=relative
