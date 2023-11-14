@@ -93,6 +93,8 @@
   ds = diff --staged
   # Diff the current branch against master
   rdb = "!f() { git range-diff origin/master $(git rev-parse --abbrev-ref --symbolic-full-name @{u}) HEAD; }; f"
+  # Diff a file against master
+  dam = "!f() { CMD=\"git diff origin/${2:-master}:${1} ${1}\"; echo \"${CMD}\"; sh -c \"$CMD\"; }; f"
 
   # == branch
   branchname = rev-parse --abbrev-ref HEAD
