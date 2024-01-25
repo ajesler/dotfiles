@@ -42,6 +42,7 @@
   # https://stackoverflow.com/questions/8475448/find-merge-commit-which-include-a-specific-commit
   find-merge = "!sh -c 'commit=$0 && branch=${1:-HEAD} && (git rev-list $commit..$branch --ancestry-path | cat -n; git rev-list $commit..$branch --first-parent | cat -n) | sort -k2 -s | uniq -f1 -d | sort -n | tail -1 | cut -f2'"
   show-merge = "!sh -c 'merge=$(git find-merge $0 $1) && [ -n \"$merge\" ] && git show $merge'"
+  # open-merge = "!sh -c 'merge=$(git find-merge $0 $1) && [ -n \"$merge\" ] && git show $merge --format=oneline | sed -r \"s/.*Merge pull request #([0-9]+).*/\1/\"'"
 
   # == add
   # https://spin.atomicobject.com/2018/04/05/fuzzy-find-git-add/
@@ -82,9 +83,13 @@
   rc = rebase --continue
 
   # == log
+  lb = log --format=fulldescription --decorate --date=relative --name-only --reverse origin/master..
+  lbd = log --format=fulldescription --decorate --date=relative --reverse --patch origin/master..
+  lm = log --format=fulldescription --decorate --date=relative --name-only
   ls = log --format=olpc --decorate --date=relative
   ld = log --format=olpc --decorate --date=relative --stat -p
-  lm = log --merges --format=fulldescription --decorate --date=relative --stat -p
+  lm = log --format=fulldescription --decorate --date=relative --name-only
+  lom = log --merges --format=fulldescription --decorate --date=relative --stat -p
   lf = log --format=olpc --decorate --date=relative --stat
   lfn = log --format=olpc --decorate --date=relative --name-only
   today = log --since=00:00:00 --all --no-merges --oneline --author=
@@ -107,12 +112,16 @@
   # List the 150 most recently committed to branch names
   recent = for-each-ref --count=150 --sort=-committerdate refs/heads/ --format="%(refname:short)"
 
+  # == switch
+  sb = checkout-recent
+
   # == checkout
   cor = checkout-recent
   co = "!f() { git checkout $(git branch | fzf); }; f"
 
 [push]
   default = simple
+	autoSetupRemote = true
 
 [pull]
   ff = only
@@ -135,13 +144,6 @@
 
 [advice]
   pushNonFastForward = false
-
-[user]
-	name = AJ Esler
-	email = aj@hatchinvest.nz
-
-[github]
-  user = ajesler
 
 [include]
   path = ~/.gitconfig_local
