@@ -26,4 +26,5 @@ alias gb="git branch"
 # Ruby
 alias be="bundle exec"
 alias ber="bundle exec rspec"
+alias berc="CAPYBARA_DRIVER=selenium_chrome bundle exec rspec"
 alias bec="bundle exec rails console"
