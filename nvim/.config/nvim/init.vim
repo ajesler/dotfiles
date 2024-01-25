@@ -262,6 +262,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'w0rp/ale'
 Plug 'iCyMind/NeoSolarized'
 Plug 'ddrscott/vim-side-search'
+Plug 'github/copilot.vim'
 
 " Go
 " Plug 'fatih/vim-go'
