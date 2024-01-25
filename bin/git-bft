@@ -1,0 +1,22 @@
+#!/bin/bash
+# Example usage:
+# git bft https://trello.com/c/zA8JQIi1/431-my-card-title
+
+# Halt the script if any command fails
+set -e
+
+# Make sure we are up to date with master
+git fetch origin master
+
+# https://trello.com/c/zA8JQIi1/431-my-card-title is the type of URL we're dealing with
+trello=$1
+# Strip off the https://trello.com/c/ part of the URL
+card_id=${trello/https\:\/\/trello.com\/c\//}
+# Strip the '/431' part of the URL as it doesn't have any value
+branch_name=${card_id/\/[[:digit:]]*[[:digit:]]/}
+
+# echo "$card_id -> $branch_name"
+
+# Create a new branch off the latest master
+git branch $branch_name origin/master
+git switch $branch_name
