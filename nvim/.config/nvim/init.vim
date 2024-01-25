@@ -130,9 +130,9 @@ map <Leader>ra :call RunAllSpecs()<CR>
 map <Leader>rr :Copen<CR>G<CR>
 
 " Fugitive shortcuts
-nmap <Leader>gb :Gblame<CR>
-nmap <Leader>gs :Gstatus<CR>
-nmap <Leader>gc :Gcommit<CR>
+nmap <Leader>gb :Git blame<CR>
+nmap <Leader>gs :Git status<CR>
+nmap <Leader>gc :Git commit<CR>
 nmap <Leader>gd :GFiles?<CR>
 
 vmap <C-F> :cclose<CR>y:silent Ag <C-R>"<CR>
@@ -198,6 +198,46 @@ nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>ez :e ~/.zshrc<CR>
 nmap <silent> <leader>et :e ~/.tmux.conf<CR>
 nmap <silent> <leader>sv :source $MYVIMRC<CR>
+
+" Hatch notes
+nmap <silent> <leader>el :vnew ~/Documents/notes/daily.md<CR>
+
+" From https://github.com/garybernhardt/dotfiles/blob/e0786e861687af64b7ea3f1b9f2b66a8bfbfe6bf/.vimrc#L400-L428
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" SWITCH BETWEEN TEST AND PRODUCTION CODE
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! OpenTestAlternate(new_split)
+  let new_file = AlternateForCurrentFile()
+  if a:new_split
+    exec ':new ' . new_file
+  else
+    exec ':e ' . new_file
+  endif
+endfunction
+function! AlternateForCurrentFile()
+  let current_file = expand("%")
+  let new_file = current_file
+  let in_spec = match(current_file, '^spec/') != -1
+  let going_to_spec = !in_spec
+  let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<workers\>') != -1 || match(current_file, '\<views\>') != -1 || match(current_file, '\<helpers\>') != -1  || match(current_file, '\<services\>') != -1 || match(current_file, '\<queries\>') != -1
+  if going_to_spec
+    if in_app
+      let new_file = substitute(new_file, '^app/', '', '')
+    end
+    let new_file = substitute(new_file, '\.e\?rb$', '_spec.rb', '')
+    let new_file = 'spec/' . new_file
+  else
+    let new_file = substitute(new_file, '_spec\.rb$', '.rb', '')
+    let new_file = substitute(new_file, '^spec/', '', '')
+    if in_app
+      let new_file = 'app/' . new_file
+    end
+  endif
+  return new_file
+endfunction
+nnoremap <leader>z :call OpenTestAlternate(0)<cr>
+nnoremap <leader>zs :call OpenTestAlternate(1)<cr>
+
 
 " --- Plugin --- "
 call plug#begin('~/.config/nvim/plugged')
