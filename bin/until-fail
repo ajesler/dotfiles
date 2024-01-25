@@ -1,0 +1,11 @@
+#!/bin/bash
+# based on https://stackoverflow.com/a/12967264
+
+count=0
+
+while "$@"; do
+  ((count ++))
+  echo -e "\n\033[35mRun $count complete\033[0m\n"
+done
+
+echo -e "\033[31mFailed after $count runs\033[0m"
