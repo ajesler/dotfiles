@@ -58,6 +58,7 @@
   # commiting
   c = commit
   cv = commit -v
+  ca = commit --amend
   uncommit = reset --soft HEAD~1
   fixup = "!f() { git log --format=olpc --decorate --date=relative --max-count 200 | fzf --ansi --preview 'git show --color=always {1}' | cut -d' ' -f 1 | xargs -r git commit --edit --fixup; }; f"
 
