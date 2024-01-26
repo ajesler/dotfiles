@@ -105,7 +105,7 @@ Pry.commands.command "caller_method", "Shows the caller of the current method" d
   end
 end
 
-Pry.commands.command "copy", "Copy argument to the clip-board" do |str|
+Pry.commands.command "lcopy", "Copy argument to the clip-board" do |str|
   IO.popen('pbcopy', 'w') { |f| f << str.to_s }
 end
 
