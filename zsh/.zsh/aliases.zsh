@@ -28,3 +28,6 @@ alias be="bundle exec"
 alias ber="bundle exec rspec"
 alias berc="CAPYBARA_DRIVER=selenium_chrome bundle exec rspec"
 alias bec="bundle exec rails console"
+
+# The Silver Searcher
+alias ag='ag --hidden' # Searh hidden files by default. See ~/.agignore for excluded files
