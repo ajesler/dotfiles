@@ -113,6 +113,9 @@ nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR> " strip trailing whitespace
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 xnoremap <leader>co :copen
 
+" Edit URLs to allow clipboard and restrict to a single monitor
+nnoremap <leader>cv /clipboardwlllxi0nwwwwxi1/multimonwlllxa00dd<CR>
+
 " " delete without yanking
 " nnoremap <leader>d "_d
 " vnoremap <leader>d "_d
