@@ -13,9 +13,9 @@ trello=$1
 # Strip off the https://trello.com/c/ part of the URL
 card_id=${trello/https\:\/\/trello.com\/c\//}
 # Strip the '/431' part of the URL as it doesn't have any value
-branch_name=${card_id/\/[[:digit:]]*[[:digit:]]/}
+branch_name=$(echo $card_id | sed 's/\/[0-9]//g')
 
-# echo "$card_id -> $branch_name"
+echo "$card_id -> $branch_name"
 
 # Create a new branch off the latest master
 git branch $branch_name origin/master
