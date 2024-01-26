@@ -3,3 +3,7 @@ nvim/.config/nvim/.backup
 nvim/.config/nvim/.swap
 
 nvim/.config/nvim/plugged/
+nvim/.config/gh/
+nvim/.config/github-copilot/
+nvim/.config/wireshark/
+nvim/.config/configstore/
