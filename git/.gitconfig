@@ -113,11 +113,7 @@
   recent = for-each-ref --count=150 --sort=-committerdate refs/heads/ --format="%(refname:short)"
 
   # == switch
-  sb = checkout-recent
-
-  # == checkout
-  cor = checkout-recent
-  co = "!f() { git checkout $(git branch | fzf); }; f"
+  sr = switch-recent
 
 [push]
   default = simple
