@@ -31,3 +31,6 @@ alias bec="bundle exec rails console"
 
 # The Silver Searcher
 alias ag='ag --hidden' # Searh hidden files by default. See ~/.agignore for excluded files
+
+# Yarn
+alias ytd="DEBUG_PRINT_LIMIT=100000 yarn test"
