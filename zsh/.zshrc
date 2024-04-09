@@ -48,7 +48,6 @@ bindkey '^w' backward-kill-word
 bindkey '^r' history-incremental-search-backward
 
 source $HOME/.zsh/prompt.zsh
-source $HOME/.zsh/fzf.zsh
 
 # Load local config if it exists
 [ -e $HOME/.zshrc_local ] && source $HOME/.zshrc_local
