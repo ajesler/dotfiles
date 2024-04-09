@@ -70,7 +70,6 @@
   usp = !git diff --name-only --cached --diff-filter=AM | uniq | fzf --print0 -m --tac | xargs -0 -t -o git restore --staged --patch
 
   # == rebasing
-  rom = rebase -i origin/master
   # Show the list of files that are conflicting
   con = diff --name-only --diff-filter=U --relative
   # Edit conflicted files
