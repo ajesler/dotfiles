@@ -158,3 +158,5 @@
 	whitespace = red reverse
 [http]
 	postBuffer = 10485760
+[rebase]
+	updateRefs = true
