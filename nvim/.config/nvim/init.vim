@@ -90,8 +90,8 @@ nnoremap <leader>cf :let @+=expand("%")<CR>
 " absolute path  (/something/src/foo.txt)
 nnoremap <leader>cF :let @+=expand("%:p")<CR>
 
-" filename       (foo.txt)
-nnoremap <leader>cn :let @+=expand("%:t")<CR>
+" " filename       (foo.txt)
+" nnoremap <leader>cn :let @+=expand("%:t")<CR>
 
 " directory name (/something/src)
 nnoremap <leader>cd :let @+=expand("%:p:h")<CR>
@@ -111,7 +111,8 @@ nnoremap <leader>t :NERDTreeFind<CR>
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR> " strip trailing whitespace
 " bind K to grep word under cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-xnoremap <leader>co :copen
+nnoremap <leader>co :copen
+nnoremap  <leader>cn :cnext<CR>
 
 " Edit URLs to allow clipboard and restrict to a single monitor
 nnoremap <leader>cv /clipboardwlllxi0nwwwwxi1/multimonwlllxa00dd<CR>
