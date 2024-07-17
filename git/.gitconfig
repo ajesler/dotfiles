@@ -56,6 +56,9 @@
   # Print out the hidden files
   hidden = !git ls-files -v | grep \"^[a-z]\"
 
+  # Update the branch to match the upstream
+  rtu = !git fetch origin && git reset --soft @{u}
+
   # commiting
   c = commit
   cv = commit -v
