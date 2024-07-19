@@ -118,6 +118,9 @@
   # == switch
   sr = switch-recent
 
+  # == push
+  pfwl = push --force-with-lease
+
 [push]
   default = simple
 	autoSetupRemote = true
