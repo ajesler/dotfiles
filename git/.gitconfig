@@ -108,10 +108,7 @@
 
   # == branch
   branchname = rev-parse --abbrev-ref HEAD
-  track = "!f() { BRANCH=$(git branchname); git branch --set-upstream-to=origin/${BRANCH}; }; f"
   cpbn = "!f() { git branchname | pbcopy; }; f"
-  # Set upstream branch
-  su = "!f() { BRANCH=$(git branchname); CMD=\"git push --set-upstream origin ${BRANCH} ${1}\"; echo \"${CMD}\"; eval $CMD; }; f"
   # List the 150 most recently committed to branch names
   recent = for-each-ref --count=150 --sort=-committerdate refs/heads/ --format="%(refname:short)"
 
