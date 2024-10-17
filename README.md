@@ -2,6 +2,13 @@
 
 Managed with [Stow](https://www.gnu.org/software/stow/).
 
+## Installing
+
+When installing, you'll need to comment out the line 'export ZSH="$HOME/.oh-my-zsh"' in the `zsh/.zshrc` file until you have zsh installed.
+
+You'll need to manually install the [ZSH dracula theme](https://draculatheme.com/zsh) and [tmux plugin manager](https://github.com/tmux-plugins/tpm?tab=readme-ov-file#installation).
+
+
 ## Inspiration
 
 https://github.com/wohyah/dotfiles
