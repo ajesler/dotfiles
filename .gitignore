@@ -1,7 +1,8 @@
+Brewfile.lock.json
+
 nvim/.config/nvim/.undo
 nvim/.config/nvim/.backup
 nvim/.config/nvim/.swap
-
 nvim/.config/nvim/plugged/
 nvim/.config/gh/
 nvim/.config/github-copilot/
