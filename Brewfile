@@ -3,32 +3,29 @@
 
 ### Packages
 brew 'stow'
+
+brew 'zsh'
 brew 'neovim'
+brew 'tmux'
 
 brew 'git'
+brew 'delta'
+brew 'bat'
 
 brew 'ruby-build'
 brew 'rbenv'
 brew 'rbenv-gemset'
 
-brew 'httpie'
-brew 'mitmproxy'
-
-brew 'node'
-
-brew 'zsh'
-
 brew 'the_silver_searcher'
 brew 'fzf'
 
-brew 'postgresql'
-
 brew 'pwgen'
 
+brew "jq"
+brew "miller"
+
 ### Casks
-tap 'homebrew/cask'
 cask_args appdir: '/Applications'
 
-cask 'ngrok'
 cask 'iterm2'
 cask "google-chrome"
