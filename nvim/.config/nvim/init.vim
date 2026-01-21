@@ -47,7 +47,6 @@ set tabstop=2 shiftwidth=2 softtabstop=2
 set expandtab
 
 set gdefault    " substitutions apply globally, rather than current line
-set pastetoggle=<F2> " Toggle paste mode so autoindents are not applied
 
 " auto writing
 set autowrite     " write when leaving buffer
