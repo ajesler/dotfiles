@@ -118,6 +118,10 @@
   # == push
   pfwl = push --force-with-lease
 
+  # == PRs
+  # Or you could call https://github.com/<user>/<project>/pulls?q=<sha> directly
+  spr = "!f() { gh pr list --search \"${1}\" --state merged --web; }; f"
+
 [push]
   default = simple
 	autoSetupRemote = true
