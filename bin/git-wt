@@ -1,0 +1,153 @@
+#!/usr/bin/env bash
+
+set -u -o pipefail
+shopt -s dotglob nullglob
+
+# wt is a helper script for dealing with worktrees
+# The worktrees are created as `<repo_name>=<sanitized_branch_name>` in the same directory as the repo was checked out to.
+#
+# References
+# https://github.com/3rd/work/blob/master/work
+# https://github.com/davvid/gcd/blob/main/gcd.sh
+
+PROGRAM_NAME=$(basename "$0")
+# Should we use the top level git repo dir instead?
+# git rev-parse --show-toplevel
+CWD=${PWD}
+CWD_PARENT=$(readlink -f "$CWD/..")
+CWD_NAME=${PWD##*/}
+WT_SEPARATOR="=wt="
+
+function cwd_is_git_repo() {
+  [ -d "$CWD/.git" ] && git rev-parse --is-inside-work-tree >/dev/null 2>&1
+}
+
+__repo_name() {
+  local base_repo=$(basename "$(git rev-parse --show-toplevel)")
+  # TODO: make this trim out everything after the WT_SEPARATOR
+  echo "${base_repo}"
+}
+
+__select_worktree() {
+  # From https://github.com/3rd/work/blob/master/work
+  local selected_tree=$(git worktree list | sed -r 's/^(.*\/([^[:space:]]* ))/\1 \2/g' | fzf --with-nth=2,4 --height 10 --border --prompt "tree: ")
+  if [ "${selected_tree}" = ""]; then
+    return 0
+  fi
+  echo "${selected_tree}"
+}
+
+__select_branch() {
+  echo $(git for-each-ref --count=150 --sort=-committerdate refs/heads/ --format="%(refname:short)" | fzf --ansi --preview 'git log --format=olpc --decorate --date=relative --color=always {}')
+}
+
+__worktree_name_from_branch() {
+  local branch_name=${1:-}
+  local sanitized_branch_name=$(__sanitize_branch "${branch_name}")
+  local repo_name=$(__repo_name)
+
+  echo "${repo_name}${WT_SEPARATOR}${sanitized_branch_name}"
+}
+
+# Make the branch name safe as a unix directory
+__sanitize_branch() {
+  local branch_name="${1:-}"
+  branch_name="${branch_name//\//-}"
+  branch_name="${branch_name//[^a-zA-Z0-9._-]/-}"
+  printf '%s\n' "$branch_name"
+}
+
+usage() {
+  cat <<'EOF'
+Usage: git wt <command> [args]
+
+Commands:
+  l|list                        List all worktrees
+  s|switch <branch_name>        Switch to a worktree for this branch (create if needed)
+  fs|fswitch                    Use fzf to select a recent branch then switch
+  r|remove <branch_name>        Remove the worktree for this branch
+  fr|fremove                    Use fzf to select a branch to remove
+EOF
+}
+
+list_worktrees() {
+  git worktree list
+}
+
+switch_worktree() {
+  local branch_name=${1:-}
+
+  if [[ -z "$branch_name" ]]; then
+    echo "No branch name given"
+    return 0
+  fi
+
+  local wt_name=$(__worktree_name_from_branch "${branch_name}")
+
+  git fetch
+
+  if [ ! -d  "../${wt_name}" ]; then
+    echo "${wt_name} needs to be created"
+
+    echo "Adding worktree '../${wt_name}' with branch ${branch_name}"
+    git worktree add "../${wt_name}" "${branch_name}"
+
+    # TODO: Here we need to copy the .env.development file to the new worktree so the app can boot
+    # Perhaps we could introduce a `.githooks/new-worktree-created` hook and run that if it is present in the original repo
+    # If that received the root dir of the main repo and the root dir of the new worktree, then it could run something like
+    # `cp main/.env.development new-worktree/.env.development`
+    # Another approach using a post-checkout hook is listed in https://mskelton.dev/bytes/using-git-hooks-when-creating-worktrees
+  fi
+
+  echo "Switching directory to ../${wt_name}"
+  cd "../${wt_name}"
+}
+
+fswitch_worktree() {
+  local selected_worktree=$(__select_worktree)
+  echo "selected_worktree=${selected_worktree}"
+
+  if [[ -z "$selected_worktree" ]]; then
+    return 1
+  fi
+
+  echo "fswitch_worktree: switching worktree"
+  switch_worktree "${selected_worktree}"
+}
+
+remove_worktree() {
+  local branch_name="${1:-}"
+
+  if [[ -z "$branch_name" ]]; then
+    echo "Missing branch name" >&2
+    usage
+    return 0
+  fi
+  git worktree remove "${branch_name}"
+}
+
+cmd="${1:-}"
+shift || true
+
+case "$cmd" in
+  l|list)
+    list_worktrees
+    ;;
+  s|switch)
+    switch_worktree "${1:-}"
+    ;;
+  fs|fswitch)
+    fswitch_worktree "${1:-}"
+    ;;
+  r|remove)
+    remove_worktree "${1:-}"
+    ;;
+  ""|h|help|-h|--help)
+    usage
+    ;;
+  *)
+    echo "Unknown command: $cmd" >&2
+    usage
+    exit 2
+    ;;
+esac

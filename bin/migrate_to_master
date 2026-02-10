@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+
+# This won't work if we are on master/main, so exit
+
+# We can't checkout if we're dirty
+unless `git diff --shortstat`.blank?
+  $stderr.puts "error: Your local changes would be overwritten by checkout."
+  $stderr.puts "Please, commit your changes or stash them before you can switch branches."
+  abort "Aborting"
+end
+
+# List migrations
+  changes = `git diff #{branch_name} --name-status`.lines
+  migrations = changes.map { |change|
+    match = /^A.*migrate\/([0-9]+)/.match(change)
+    match ? match[1] : nil
+  }.compact
+
+  # Drop it like it's hot
+  migrations.sort.reverse.each do |migration|
+    # TODO we're already in rake, we should call these tasks directly
+    sh "bundle exec rake db:migrate:down VERSION=#{migration}"
+  end

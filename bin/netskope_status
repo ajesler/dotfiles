@@ -1,0 +1,27 @@
+#!/bin/zsh
+
+netskope_status="$(/Library/Application\ Support/Netskope/STAgent/nsdiag -f | grep status)"
+en0_config="$(ifconfig en0)"
+sys_dns_config="$(scutil --dns | grep nameserver | sort | uniq)"
+dns_config="$(networksetup -getdnsservers Wi-Fi)"
+
+
+header () {
+  echo "#######################"
+  echo "# $1"
+  echo "#######################"
+}
+
+header "Netskope Status"
+echo $netskope_status
+
+echo
+
+header "en0 Status"
+echo $en0_config
+
+echo
+
+header "System DNS config"
+echo $sys_dns_config
+echo $dns_config

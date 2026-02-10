@@ -1,0 +1,17 @@
+#!/bin/bash
+# Example usage:
+# git bft https://trello.com/c/zA8JQIi1/431-my-card-title
+
+# Halt the script if any command fails
+set -e
+
+primary_branch=$(git primary-branch-name)
+default_branch="origin/${primary_branch}"
+
+rebase_on_branch="${1:-$default_branch}"
+
+echo "Rebasing on branch: ${rebase_on_branch}"
+# exit
+
+git fetch
+git rebase -i --autosquash --update-refs "${rebase_on_branch}"
