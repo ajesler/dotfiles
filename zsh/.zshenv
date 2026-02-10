@@ -1,5 +1,7 @@
 export EDITOR=nvim
 
+export PATH="/opt/homebrew/bin:$PATH"
+
 if [[ -d $HOME/bin ]]; then
   export PATH="$PATH:$HOME/bin"
 fi

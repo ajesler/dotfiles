@@ -48,7 +48,7 @@ bindkey -v
 bindkey '^P' up-history
 bindkey '^N' down-history
 bindkey '^w' backward-kill-word
-bindkey '^r' history-incremental-search-backward
+# bindkey '^r' history-incremental-search-backward
 
 source $HOME/.zsh/prompt.zsh
 
@@ -56,3 +56,5 @@ source $HOME/.zsh/prompt.zsh
 [ -e $HOME/.zshrc_local ] && source $HOME/.zshrc_local
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+eval "$(fzf --zsh)"
