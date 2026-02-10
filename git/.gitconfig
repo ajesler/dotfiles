@@ -42,7 +42,7 @@
   # https://stackoverflow.com/questions/8475448/find-merge-commit-which-include-a-specific-commit
   find-merge = "!sh -c 'commit=$0 && branch=${1:-HEAD} && (git rev-list $commit..$branch --ancestry-path | cat -n; git rev-list $commit..$branch --first-parent | cat -n) | sort -k2 -s | uniq -f1 -d | sort -n | tail -1 | cut -f2'"
   show-merge = "!sh -c 'merge=$(git find-merge $0 $1) && [ -n \"$merge\" ] && git show $merge'"
-  # open-merge = "!sh -c 'merge=$(git find-merge $0 $1) && [ -n \"$merge\" ] && git show $merge --format=oneline | sed -r \"s/.*Merge pull request #([0-9]+).*/\1/\"'"
+  primary-branch-name = "!f() { git symbolic-ref refs/remotes/origin/HEAD | cut -f4 -d/; }; f"
 
   # == add
   # https://spin.atomicobject.com/2018/04/05/fuzzy-find-git-add/
@@ -80,7 +80,7 @@
   # Rebase and auto-squash fixup commits
   ras =  "!f() { git rebase -i --autosquash $(git mb); }; f"
   # Rebase onto master and auto-squash fixup commits
-  rasm =  "!f() { git fetch && git rebase -i --autosquash origin/master; }; f"
+  rasm =  "!f() { git fetch && git rebase -i --autosquash --update-refs origin/master; }; f"
   # Continue
   rc = rebase --continue
 
@@ -107,6 +107,7 @@
   dam = "!f() { CMD=\"git diff origin/${2:-master}:${1} ${1}\"; echo \"${CMD}\"; sh -c \"$CMD\"; }; f"
 
   # == branch
+  # Could also use `git branch --show-current` ?
   branchname = rev-parse --abbrev-ref HEAD
   cpbn = "!f() { git branchname | pbcopy; }; f"
   # List the 150 most recently committed to branch names
