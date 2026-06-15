@@ -19,13 +19,11 @@ brew 'rbenv-gemset'
 brew 'the_silver_searcher'
 brew 'fzf'
 
-brew 'pwgen'
-
 brew "jq"
 brew "miller"
 
 ### Casks
 cask_args appdir: '/Applications'
 
-cask 'iterm2'
 cask "google-chrome"
+cask "spotify"

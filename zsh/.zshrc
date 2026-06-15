@@ -1,12 +1,12 @@
-export ZSH="$HOME/.oh-my-zsh"
+# export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME="Dracula"
+# ZSH_THEME="Dracula"
 
-plugins=()
+# plugins=()
 
-source $ZSH/oh-my-zsh.sh
+# source $ZSH/oh-my-zsh.sh
 
-fpath=(~/.zsh $fpath)
+# fpath=(~/.zsh $fpath)
 
 # Options
 setopt auto_cd
@@ -40,7 +40,7 @@ export HISTFILE=~/.zsh_history
 export SAVEHIST=$HISTSIZE
 
 export FZF_DEFAULT_COMMAND='ag -g ""'
-export BAT_THEME="Dracula"
+# export BAT_THEME="Dracula"
 
 # Bindings
 bindkey -v
@@ -58,3 +58,20 @@ source $HOME/.zsh/prompt.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 eval "$(fzf --zsh)"
+
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Auto-switch Node version based on .nvmrc when changing directories
+autoload -U add-zsh-hook
+load-nvmrc() {
+  local nvmrc_path
+  nvmrc_path="$(nvm_find_nvmrc)"
+  if [ -n "$nvmrc_path" ]; then
+    nvm use --silent
+  fi
+}
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc  # run on shell start
+
+# chunk shell completion
+source <(chunk completion zsh)

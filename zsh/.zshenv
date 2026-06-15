@@ -1,6 +1,9 @@
 export EDITOR=nvim
 
-export PATH="/opt/homebrew/bin:$PATH"
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# export PATH="/opt/homebrew/bin:$PATH"
 
 if [[ -d $HOME/bin ]]; then
   export PATH="$PATH:$HOME/bin"

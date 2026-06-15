@@ -7,7 +7,7 @@
 [interactive]
   diffFilter = delta --color-only # Added when switching to delta
 
-[delta] # Added when switching to delta
+[delta]
     navigate = true    # use n and N to move between diff sections
     light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
 
@@ -169,3 +169,9 @@
 	postBuffer = 10485760
 [rebase]
 	updateRefs = true
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
