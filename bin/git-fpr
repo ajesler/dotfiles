@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+cmd="open \"https://github.com/kiwi-wealth/harvest/pulls?q=${1}\""
+
+echo $cmd
+
+$cmd
