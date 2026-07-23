@@ -1,4 +1,4 @@
-# export ZSH="$HOME/.oh-my-zsh"
+
 
 # ZSH_THEME="Dracula"
 
@@ -51,6 +51,10 @@ bindkey '^w' backward-kill-word
 # bindkey '^r' history-incremental-search-backward
 
 source $HOME/.zsh/prompt.zsh
+#
+# Setup completions
+fpath=(~/.zsh/completions $fpath)
+autoload -U compinit && compinit
 
 # Load local config if it exists
 [ -e $HOME/.zshrc_local ] && source $HOME/.zshrc_local
