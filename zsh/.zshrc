@@ -39,7 +39,7 @@ export HISTSIZE=10000
 export HISTFILE=~/.zsh_history
 export SAVEHIST=$HISTSIZE
 
-export FZF_DEFAULT_COMMAND='ag -g ""'
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 # export BAT_THEME="Dracula"
 
 # Bindings

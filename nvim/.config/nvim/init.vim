@@ -104,7 +104,6 @@ vnoremap / /\v
 nnoremap <leader><space> :noh<cr> " can use <leader><space> to clear the search
 nnoremap <leader>f :Files<CR>
 nnoremap <leader>rf :set filetype=ruby<CR>
-nnoremap <leader>a :Ag<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>t :NERDTreeFind<CR>
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR> " strip trailing whitespace
@@ -138,8 +137,8 @@ nmap <Leader>gs :Git status<CR>
 nmap <Leader>gc :Git commit<CR>
 nmap <Leader>gd :GFiles?<CR>
 
-vmap <C-F> :cclose<CR>y:silent Ag <C-R>"<CR>
-nmap <C-F> :cclose<CR>yiw:silent Ag <C-R>"<CR>
+vmap <C-F> :cclose<CR>y:silent Rg <C-R>"<CR>
+nmap <C-F> :cclose<CR>yiw:silent Rg <C-R>"<CR>
 
 " SideSearch current word and return to original window
 nnoremap <Leader>ss :SideSearch <C-r><C-w><CR> | wincmd p
@@ -392,21 +391,13 @@ else
   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 
-" The Silver Searcher
-if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor\ --hidden
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
+if executable('rg')
+  set grepprg=rg\ --vimgrep\ --smart-case\ --no-hidden\ --no-heading
 endif
 
 " How should we execute the search?
 " --heading and --stats are required!
-let g:side_search_prg = 'ag'
+let g:side_search_prg = 'rg --heading --stats --line-number --smart-case'
  \. " --ignore='*.js.map'"
  \. " --heading --stats -B 1 -A 4"
 

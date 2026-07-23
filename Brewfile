@@ -16,7 +16,7 @@ brew 'ruby-build'
 brew 'rbenv'
 brew 'rbenv-gemset'
 
-brew 'the_silver_searcher'
+brew 'ripgrep'
 brew 'fzf'
 
 brew "jq"
