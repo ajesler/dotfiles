@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+# This script takes two arguments, runs each argument as a console command, saves the output of each to a file, then shows the difference between the two files.
+# The files are created with mktemp, and are deleted once the script finishes.
+
+# DIFF_COMMAND="nvim -d"
+DIFF_COMMAND="code -d"
+# DIFF_COMMAND="git diff --no-index"
+
+if [ $# -ne 2 ]; then
+  echo "Usage: diffc <command1> <command2>"
+  echo "Runs two commands and shows the difference between their outputs."
+  exit 1
+fi
+
+file1=$(mktemp)
+file2=$(mktemp)
+
+# trap "rm -f $file1 $file2" EXIT
+
+eval "$1" > "$file1"
+eval "$2" > "$file2"
+
+echo "$DIFF_COMMAND \"$1\" \"$2\""
+$DIFF_COMMAND "$file1" "$file2"
