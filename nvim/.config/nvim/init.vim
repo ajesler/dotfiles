@@ -392,12 +392,18 @@ else
 endif
 
 if executable('rg')
-  set grepprg=rg\ --vimgrep\ --smart-case\ --no-hidden\ --no-heading
+  set grepprg=rg\ --hidden\ --vimgrep\ --smart-case\ --no-heading
 endif
+
+command! -bang -nargs=* Rg call fzf#vim#grep(
+      \ 'rg --column --line-number --no-heading --color=always --smart-case --hidden -- ' .
+      \ fzf#shellescape(<q-args>),
+      \ fzf#vim#with_preview(),
+      \ <bang>0)
 
 " How should we execute the search?
 " --heading and --stats are required!
-let g:side_search_prg = 'rg --heading --stats --line-number --smart-case'
+let g:side_search_prg = 'rg --hidden --heading --stats --line-number --smart-case'
  \. " --ignore='*.js.map'"
  \. " --heading --stats -B 1 -A 4"
 
