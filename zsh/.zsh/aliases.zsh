@@ -1,3 +1,4 @@
+alias daily="${EDITOR} ${HOME}/Documents/notes/daily.md"
 alias notes="tmux split-window 'cd ${HOME}/Documents/notes; ${EDITOR} .'"
 
 alias vim=nivm
