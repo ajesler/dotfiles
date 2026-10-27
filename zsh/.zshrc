@@ -49,6 +49,8 @@ bindkey '^N' down-history
 bindkey '^w' backward-kill-word
 # bindkey '^r' history-incremental-search-backward
 
+source $HOME/.zsh/functions.zsh
+source $HOME/.zsh/aliases.zsh
 source $HOME/.zsh/prompt.zsh
 #
 # Setup completions
@@ -62,16 +64,21 @@ autoload -U compinit && compinit
 
 eval "$(fzf --zsh)"
 
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+if [[ -s "$NVM_DIR/nvm.sh" ]]; then
+  source "$NVM_DIR/nvm.sh" --no-use
+  [[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
 
-# Auto-switch Node version based on .nvmrc when changing directories
-autoload -U add-zsh-hook
-load-nvmrc() {
-  local nvmrc_path
-  nvmrc_path="$(nvm_find_nvmrc)"
-  if [ -n "$nvmrc_path" ]; then
-    nvm use --silent
-  fi
-}
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc  # run on shell start
+  # Auto-switch Node version based on .nvmrc when changing directories
+  autoload -U add-zsh-hook
+  load-nvmrc() {
+    local nvmrc_path
+    nvmrc_path="$(nvm_find_nvmrc)"
+    if [[ -n "$nvmrc_path" ]]; then
+      nvm use --silent
+    elif [[ "${1-}" == "--default" ]]; then
+      nvm use --silent default
+    fi
+  }
+  add-zsh-hook chpwd load-nvmrc
+  load-nvmrc --default
+fi
