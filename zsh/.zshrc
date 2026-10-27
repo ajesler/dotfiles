@@ -75,6 +75,3 @@ load-nvmrc() {
 }
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc  # run on shell start
-
-# chunk shell completion
-source <(chunk completion zsh)

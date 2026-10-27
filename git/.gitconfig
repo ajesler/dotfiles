@@ -177,3 +177,5 @@
 	helper = !/opt/homebrew/bin/gh auth git-credential
 [init]
 	defaultBranch = main
+[credential "https://git.heroku.com"]
+	helper = !heroku git:credentials

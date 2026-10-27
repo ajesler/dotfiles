@@ -3,11 +3,11 @@
 # This won't work if we are on master/main, so exit
 
 # We can't checkout if we're dirty
-unless `git diff --shortstat`.blank?
-  $stderr.puts "error: Your local changes would be overwritten by checkout."
-  $stderr.puts "Please, commit your changes or stash them before you can switch branches."
-  abort "Aborting"
-end
+# if `git diff --shortstat`&.empty?
+#   $stderr.puts "error: Your local changes would be overwritten by checkout."
+#   $stderr.puts "Please, commit your changes or stash them before you can switch branches."
+#   abort "Aborting"
+# end
 
 # List migrations
   changes = `git diff #{branch_name} --name-status`.lines
